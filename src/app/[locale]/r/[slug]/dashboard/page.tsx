@@ -10,6 +10,7 @@ import Card from '@/components/ui/Card';
 import Input from '@/components/ui/Input';
 import RoleGuard from '@/components/layout/RoleGuard';
 import dynamic from 'next/dynamic';
+import { QRCodeSVG } from 'qrcode.react';
 
 const QRScanner = dynamic(() => import('@/components/ui/QRScanner'), {
   ssr: false,
@@ -115,13 +116,20 @@ export default function RestaurantDashboard({
               <div style={{ marginTop: '16px', display: 'flex', gap: '12px' }}>
                 <Button variant="primary" fullWidth>{t('common.save')}</Button>
               </div>
-
               <Card style={{ marginTop: '24px', textAlign: 'center' }}>
                 <h4 style={{ marginBottom: '8px' }}>{t('restaurant.recruitQr')}</h4>
                 <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', marginBottom: '16px' }}>
                   {t('restaurant.recruitQrDesc')}
                 </p>
-                <Button variant="outline" icon="camera" fullWidth>{t('restaurant.showQr')}</Button>
+                <div style={{ background: 'white', padding: '16px', borderRadius: '12px', display: 'inline-block', marginBottom: '16px' }}>
+                  <QRCodeSVG 
+                    value={`https://${slug}.shabih.io/auth`} 
+                    size={200}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                  />
+                </div>
+                <Button variant="outline" icon="camera" fullWidth>{t('restaurant.downloadQr')}</Button>
               </Card>
             </div>
           )}
