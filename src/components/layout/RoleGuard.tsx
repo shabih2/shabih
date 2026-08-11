@@ -1,0 +1,90 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import Icon from './Icon';
+
+interface RoleGuardProps {
+  children: React.ReactNode;
+  allowedRoles?: ('customer' | 'ambassador' | 'restaurant')[];
+}
+
+export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const t = useTranslations('common');
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulated auth check using localStorage (MVP Lean mode)
+    const session = localStorage.getItem('shabih_session');
+    const isRestaurantRoute = pathname.includes('/r/');
+    
+    if (!session) {
+      // Not logged in
+      if (isRestaurantRoute) {
+        // Redirect to specific restaurant login
+        const slug = pathname.split('/r/')[1]?.split('/')[0];
+        if (slug && !pathname.endsWith('/auth')) {
+          router.push(`/r/${slug}/auth`);
+        } else {
+          setLoading(false);
+          setIsAuthorized(true); // Allow them to see the auth page
+        }
+      } else {
+        if (!pathname.endsWith('/auth') && pathname !== '/' && pathname !== '/ar' && pathname !== '/en') {
+          router.push('/auth');
+        } else {
+          setLoading(false);
+          setIsAuthorized(true);
+        }
+      }
+      return;
+    }
+
+    // Determine current role based on session
+    // In our MVP simulation:
+    // If session starts with +966, it's a customer/ambassador.
+    // If session is a slug, it's a restaurant.
+    const isRestaurantSession = !session.startsWith('+');
+
+    if (isRestaurantRoute && !isRestaurantSession) {
+      // User trying to access restaurant dashboard
+      router.push('/profile');
+      return;
+    }
+
+    if (!isRestaurantRoute && isRestaurantSession) {
+      // Restaurant trying to access user app
+      router.push(`/r/${session}/dashboard`);
+      return;
+    }
+
+    // Role check logic (simplified for MVP)
+    if (allowedRoles) {
+      // e.g. check if they are activated ambassador if required
+      // For now, allow all authenticated
+    }
+
+    setIsAuthorized(true);
+    setLoading(false);
+
+  }, [pathname, router, allowedRoles]);
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', height: '100dvh', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '16px' }}>
+        <Icon name="shabih-active" size="xl" className="spin" />
+        <p style={{ color: 'var(--text-secondary)' }}>{t('loading')}</p>
+      </div>
+    );
+  }
+
+  if (!isAuthorized) {
+    return null;
+  }
+
+  return <>{children}</>;
+}
