@@ -93,6 +93,29 @@ export default function RestaurantDashboard({
 
           {activeTab === 'shabihs' && (
             <div className={styles.shabihsTab}>
+              <h3 style={{ marginBottom: '16px' }}>{t('restaurant.topShabihs')}</h3>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+                {/* Mock List of Top Shabihs */}
+                {[
+                  { name: '+966500000000', convRate: '12%', status: 'activeAmbassador' },
+                  { name: '+966511111111', convRate: '9%', status: 'ambassador' }
+                ].map((shabih, idx) => (
+                  <Card key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-surface-hover)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Icon name="user" />
+                      </div>
+                      <div dir="ltr">
+                        <div style={{ fontWeight: 'bold' }}>{shabih.name}</div>
+                        <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--accent-gold)' }}>معدل التحويل: {shabih.convRate}</div>
+                      </div>
+                    </div>
+                    <Button variant="outline" size="sm">{t('restaurant.select')}</Button>
+                  </Card>
+                ))}
+              </div>
+
               <Card>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                   <div style={{ flex: 1 }}>
