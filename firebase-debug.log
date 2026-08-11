@@ -107,3 +107,98 @@ https://nextjs.org/docs/messages/module-not-found
 [debug] [2026-08-11T21:17:23.518Z] Error: ENOENT: no such file or directory, open '/Users/mswd/Desktop/p1/.next/server/middleware-manifest.json'
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2026-08-11T21:17:54.635Z] ----------------------------------------------------------------------
+[debug] [2026-08-11T21:17:54.636Z] Command:       /Users/mswd/.nvm/versions/node/v24.19.0/bin/node /Users/mswd/.nvm/versions/node/v24.19.0/bin/firebase deploy --only hosting
+[debug] [2026-08-11T21:17:54.636Z] CLI Version:   15.26.0
+[debug] [2026-08-11T21:17:54.636Z] Platform:      darwin
+[debug] [2026-08-11T21:17:54.636Z] Node Version:  v24.19.0
+[debug] [2026-08-11T21:17:54.636Z] Detected Agent: antigravity
+[debug] [2026-08-11T21:17:54.636Z] Time:          Wed Aug 12 2026 00:17:54 GMT+0300 (Arabian Standard Time)
+[debug] [2026-08-11T21:17:54.637Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-08-11T21:17:55.244Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-08-11T21:17:55.245Z] > authorizing via signed-in user (aliextimes14@gmail.com)
+[debug] [2026-08-11T21:17:55.245Z] [iam] checking project shabih-mvp-platform for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-08-11T21:17:55.267Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:55.267Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:55.268Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions [none]
+[debug] [2026-08-11T21:17:55.268Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions  x-goog-user-project=shabih-mvp-platform
+[debug] [2026-08-11T21:17:55.268Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-08-11T21:17:55.734Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions 200
+[debug] [2026-08-11T21:17:55.737Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-08-11T21:17:55.738Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:55.738Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:55.738Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform [none]
+[debug] [2026-08-11T21:17:56.314Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform 200
+[debug] [2026-08-11T21:17:56.314Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform {"projectId":"shabih-mvp-platform","projectNumber":"943535955877","displayName":"Shabih","name":"projects/shabih-mvp-platform","resources":{"hostingSite":"shabih-mvp-platform"},"state":"ACTIVE","labels":{"firebase":"enabled"},"etag":"1_2a4cf695-b7e4-433f-a401-1a54de0473a7"}
+[debug] [2026-08-11T21:17:56.939Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:56.939Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:56.939Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites pageToken=&pageSize=10
+[debug] [2026-08-11T21:17:58.868Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites 200
+[debug] [2026-08-11T21:17:58.868Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites {"sites":[{"name":"projects/shabih-mvp-platform/sites/shabih-mvp-platform","defaultUrl":"https://shabih-mvp-platform.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2026-08-11T21:17:58.869Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:58.869Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:58.869Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites 
+[debug] [2026-08-11T21:17:59.987Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites 200
+[debug] [2026-08-11T21:17:59.987Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites {"sites":[{"name":"projects/shabih-mvp-platform/sites/shabih-mvp-platform","defaultUrl":"https://shabih-mvp-platform.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2026-08-11T21:17:59.988Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:59.988Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:59.988Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform/webApps/-/config [none]
+[debug] [2026-08-11T21:18:00.717Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform/webApps/-/config 200
+[debug] [2026-08-11T21:18:00.717Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform/webApps/-/config {"projectId":"shabih-mvp-platform","appId":"1:943535955877:web:e52958fe4b93d564f7524c","storageBucket":"shabih-mvp-platform.firebasestorage.app","apiKey":"AIzaSyCw1w_J-O0XEsqpuAuBs5fwCYG6XdoALm4","authDomain":"shabih-mvp-platform.firebaseapp.com","messagingSenderId":"943535955877","projectNumber":"943535955877","version":"2"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 16.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2026-08-11T21:18:02.108Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:18:02.109Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:18:02.109Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites/shabih-mvp-platform [none]
+[debug] [2026-08-11T21:18:03.216Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites/shabih-mvp-platform 200
+[debug] [2026-08-11T21:18:03.216Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites/shabih-mvp-platform {"name":"projects/shabih-mvp-platform/sites/shabih-mvp-platform","defaultUrl":"https://shabih-mvp-platform.web.app","type":"DEFAULT_SITE"}
+[info] ▲ Next.js 16.3.0 (Turbopack)
+- Environments: .env.local
+
+[info] ✓ Running next.config.ts took 28ms
+
+[info] 
+
+[info] ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+
+[info]   Creating an optimized production build ...
+
+[info] ✓ Compiled successfully in 604ms
+
+[info]   Running TypeScript ...
+
+[info] src/app/[locale]/admin/page.tsx(43,10): error TS2741: Property 'children' is missing in type '{ variant: "ghost"; icon: string; onClick: () => void; }' but required in type 'ButtonProps'.
+
+[info] src/app/[locale]/links/page.tsx(52,12): error TS2741: Property 'children' is missing in type '{ variant: "ghost"; icon: string; onClick: () => void; }' but required in type 'ButtonProps'.
+src/app/[locale]/links/page.tsx(76,18): error TS2741: Property 'children' is missing in type '{ variant: "ghost"; icon: string; onClick: () => void; size: "sm"; }' but required in type 'ButtonProps'.
+src/app/[locale]/links/page.tsx(95,22): error TS2741: Property 'children' is missing in type '{ variant: "outline"; size: "sm"; icon: string; }' but required in type 'ButtonProps'.
+src/app/[locale]/profile/page.tsx(82,12): error TS2741: Property 'children' is missing in type '{ variant: "ghost"; icon: string; onClick: () => void; }' but required in type 'ButtonProps'.
+src/app/[locale]/profile/page.tsx(98,51): error TS2322: Type '{ children: (false | Element)[]; className: string; glow: boolean; }' is not assignable to type 'IntrinsicAttributes & CardProps'.
+  Property 'glow' does not exist on type 'IntrinsicAttributes & CardProps'.
+src/app/[locale]/r/[slug]/dashboard/page.tsx(49,12): error TS2741: Property 'children' is missing in type '{ variant: "ghost"; icon: string; onClick: () => void; }' but required in type 'ButtonProps'.
+src/app/[locale]/r/[slug]/dashboard/page.tsx(104,35): error TS2322: Type '{ children: Element[]; key: number; style: { display: string; alignItems: string; justifyContent: string; padding: string; }; }' is not assignable to type 'IntrinsicAttributes & CardProps'.
+  Property 'style' does not exist on type 'IntrinsicAttributes & CardProps'.
+src/app/[locale]/r/[slug]/dashboard/page.tsx(142,21): error TS2322: Type '{ children: Element[]; style: { marginTop: string; textAlign: string; }; }' is not assignable to type 'IntrinsicAttributes & CardProps'.
+  Property 'style' does not exist on type 'IntrinsicAttributes & CardProps'.
+
+[info] Failed to type check.
+
+
+[debug] [2026-08-11T21:18:06.647Z] Error: ENOENT: no such file or directory, open '/Users/mswd/Desktop/p1/.next/export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
