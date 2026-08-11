@@ -1,0 +1,46 @@
+.scannerWrapper {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--bg-surface);
+  border: 1px solid hsla(220, 15%, 30%, 0.2);
+}
+
+/* Override html5-qrcode default ugly styles */
+.qrReader {
+  width: 100%;
+  border: none !important;
+}
+
+.qrReader button {
+  background: var(--accent-gold) !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: var(--radius-md) !important;
+  cursor: pointer !important;
+  font-family: var(--font-family) !important;
+  margin: 8px !important;
+}
+
+.qrReader select {
+  background: var(--bg-glass) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid hsla(220, 15%, 30%, 0.5) !important;
+  padding: 8px !important;
+  border-radius: var(--radius-md) !important;
+  margin: 8px !important;
+}
+
+.qrReader a {
+  display: none !important; /* Hide the 'Powered by' link */
+}
+
+.errorText {
+  color: var(--danger);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  padding: var(--space-2);
+}

@@ -9,6 +9,12 @@ import Icon from '@/components/ui/Icon';
 import Card from '@/components/ui/Card';
 import Input from '@/components/ui/Input';
 import RoleGuard from '@/components/layout/RoleGuard';
+import dynamic from 'next/dynamic';
+
+const QRScanner = dynamic(() => import('@/components/ui/QRScanner'), {
+  ssr: false,
+  loading: () => <div style={{ padding: '20px', textAlign: 'center' }}>جاري تحميل الكاميرا...</div>
+});
 
 export default function RestaurantDashboard({
   params,
@@ -69,11 +75,11 @@ export default function RestaurantDashboard({
           {activeTab === 'operations' && (
             <div className={styles.operationsTab}>
               <div className={styles.scannerBox}>
-                <Icon name="camera" size="xl" />
-                <p>{t('branch.scanTitle')}</p>
-                <Button variant="outline" size="sm">
-                  {t('branch.scanButton')}
-                </Button>
+                <QRScanner 
+                  onScanSuccess={(text) => {
+                    alert(`تم قراءة الباركود: ${text}`);
+                  }} 
+                />
               </div>
               <h3 style={{ marginTop: '24px', marginBottom: '16px' }}>{t('branch.todayOps')}</h3>
               <Card>
