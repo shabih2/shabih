@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import Icon from './Icon';
+import Icon from '@/components/ui/Icon';
 
 interface RoleGuardProps {
   children: React.ReactNode;

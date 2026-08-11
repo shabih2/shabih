@@ -1,0 +1,109 @@
+[debug] [2026-08-11T21:17:10.881Z] ----------------------------------------------------------------------
+[debug] [2026-08-11T21:17:10.883Z] Command:       /Users/mswd/.nvm/versions/node/v24.19.0/bin/node /Users/mswd/.nvm/versions/node/v24.19.0/bin/firebase deploy --only hosting
+[debug] [2026-08-11T21:17:10.883Z] CLI Version:   15.26.0
+[debug] [2026-08-11T21:17:10.883Z] Platform:      darwin
+[debug] [2026-08-11T21:17:10.883Z] Node Version:  v24.19.0
+[debug] [2026-08-11T21:17:10.883Z] Detected Agent: antigravity
+[debug] [2026-08-11T21:17:10.883Z] Time:          Wed Aug 12 2026 00:17:10 GMT+0300 (Arabian Standard Time)
+[debug] [2026-08-11T21:17:10.883Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-08-11T21:17:11.534Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-08-11T21:17:11.535Z] > authorizing via signed-in user (aliextimes14@gmail.com)
+[debug] [2026-08-11T21:17:11.535Z] [iam] checking project shabih-mvp-platform for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-08-11T21:17:11.540Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:11.540Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:11.541Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions [none]
+[debug] [2026-08-11T21:17:11.541Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions  x-goog-user-project=shabih-mvp-platform
+[debug] [2026-08-11T21:17:11.541Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-08-11T21:17:12.101Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions 200
+[debug] [2026-08-11T21:17:12.101Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shabih-mvp-platform:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-08-11T21:17:12.102Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:12.102Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:12.102Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform [none]
+[debug] [2026-08-11T21:17:12.756Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform 200
+[debug] [2026-08-11T21:17:12.756Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform {"projectId":"shabih-mvp-platform","projectNumber":"943535955877","displayName":"Shabih","name":"projects/shabih-mvp-platform","resources":{"hostingSite":"shabih-mvp-platform"},"state":"ACTIVE","labels":{"firebase":"enabled"},"etag":"1_2a4cf695-b7e4-433f-a401-1a54de0473a7"}
+[debug] [2026-08-11T21:17:13.370Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:13.370Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:13.370Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites pageToken=&pageSize=10
+[debug] [2026-08-11T21:17:15.561Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites 200
+[debug] [2026-08-11T21:17:15.561Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites {"sites":[{"name":"projects/shabih-mvp-platform/sites/shabih-mvp-platform","defaultUrl":"https://shabih-mvp-platform.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2026-08-11T21:17:15.562Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:15.563Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:15.563Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites 
+[debug] [2026-08-11T21:17:16.813Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites 200
+[debug] [2026-08-11T21:17:16.814Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites {"sites":[{"name":"projects/shabih-mvp-platform/sites/shabih-mvp-platform","defaultUrl":"https://shabih-mvp-platform.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2026-08-11T21:17:16.814Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:16.814Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:16.814Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform/webApps/-/config [none]
+[debug] [2026-08-11T21:17:17.695Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform/webApps/-/config 200
+[debug] [2026-08-11T21:17:17.696Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shabih-mvp-platform/webApps/-/config {"projectId":"shabih-mvp-platform","appId":"1:943535955877:web:e52958fe4b93d564f7524c","storageBucket":"shabih-mvp-platform.firebasestorage.app","apiKey":"AIzaSyCw1w_J-O0XEsqpuAuBs5fwCYG6XdoALm4","authDomain":"shabih-mvp-platform.firebaseapp.com","messagingSenderId":"943535955877","projectNumber":"943535955877","version":"2"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 16.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2026-08-11T21:17:19.110Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:19.110Z] Checked if tokens are valid: true, expires at: 1786484128455
+[debug] [2026-08-11T21:17:19.110Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites/shabih-mvp-platform [none]
+[debug] [2026-08-11T21:17:20.102Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites/shabih-mvp-platform 200
+[debug] [2026-08-11T21:17:20.103Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/shabih-mvp-platform/sites/shabih-mvp-platform {"name":"projects/shabih-mvp-platform/sites/shabih-mvp-platform","defaultUrl":"https://shabih-mvp-platform.web.app","type":"DEFAULT_SITE"}
+[info] ▲ Next.js 16.3.0 (Turbopack)
+
+[info] - Environments: .env.local
+
+[info] ✓ Running next.config.ts took 113ms
+
+[info] 
+
+[info] ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+
+[info]   Creating an optimized production build ...
+
+[info] 
+
+[info] > Build error occurred
+
+[info] Error: Turbopack build failed with 1 error:
+./src/components/layout/RoleGuard.tsx:6:1
+Error: Module not found: Can't resolve './Icon'
+  4 | import { useRouter, usePathname } from 'next/navigation';
+  5 | import { useTranslations } from 'next-intl';
+> 6 | import Icon from './Icon';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | interface RoleGuardProps {
+  9 |   children: React.ReactNode;
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/RoleGuard.tsx [Client Component Browser]
+    ./src/app/[locale]/r/[slug]/dashboard/page.tsx [Client Component Browser]
+    ./src/app/[locale]/r/[slug]/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/RoleGuard.tsx [Client Component SSR]
+    ./src/app/[locale]/r/[slug]/dashboard/page.tsx [Client Component SSR]
+    ./src/app/[locale]/r/[slug]/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./src/components/layout/RoleGuard.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+
+[debug] [2026-08-11T21:17:23.518Z] Error: ENOENT: no such file or directory, open '/Users/mswd/Desktop/p1/.next/server/middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.
