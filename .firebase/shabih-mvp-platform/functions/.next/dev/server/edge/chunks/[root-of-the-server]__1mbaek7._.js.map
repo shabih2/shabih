@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["file:///Users/mswd/Desktop/p1/src/i18n/routing.ts"],"sourcesContent":["import { defineRouting } from 'next-intl/routing';\n\nexport const routing = defineRouting({\n  locales: ['ar', 'en'],\n  defaultLocale: 'ar',\n});\n"],"names":["routing","locales","defaultLocale"],"mappings":";;;;AAAA;;AAEO,MAAMA,UAAU,IAAA,2PAAa,EAAC;IACnCC,SAAS;QAAC;QAAM;KAAK;IACrBC,eAAe;AACjB"}},
+    {"offset": {"line": 33, "column": 0}, "map": {"version":3,"sources":["file:///Users/mswd/Desktop/p1/src/middleware.ts"],"sourcesContent":["import createMiddleware from 'next-intl/middleware';\nimport { routing } from './i18n/routing';\n\nexport default createMiddleware(routing);\n\nexport const config = {\n  matcher: [\n    // Match all pathnames except for\n    // - /api (API routes)\n    // - /_next (Next.js internals)\n    // - /icons, /images (static files)\n    // - all files with an extension (e.g. favicon.ico)\n    '/((?!api|_next|icons|images|.*\\\\..*).*)',\n  ],\n};\n"],"names":["config","matcher"],"mappings":";;;;;;AAAA;AACA;;;uCAEe,IAAA,yMAAgB,EAAC,yIAAO;AAEhC,MAAMA,SAAS;IACpBC,SAAS;QACP,iCAAiC;QACjC,sBAAsB;QACtB,+BAA+B;QAC/B,mCAAmC;QACnC,mDAAmD;QACnD;KACD;AACH"}}]
+}

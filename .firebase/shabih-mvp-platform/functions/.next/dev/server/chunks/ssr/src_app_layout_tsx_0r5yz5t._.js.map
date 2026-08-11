@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/mswd/Desktop/p1/src/app/layout.tsx"],"sourcesContent":["import type { Metadata } from 'next';\nimport './globals.css';\n\nexport const metadata: Metadata = {\n  title: 'شبيح | Shabih – منصة تسويق بالإحالة',\n  description: 'منصة شبيح للتسويق بالإحالة – اربط المطاعم بالسفراء والعملاء',\n};\n\nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n  return children;\n}\n"],"names":["metadata","title","description","RootLayout","children"],"mappings":";;;;;;;AAGO,MAAMA,WAAqB;IAChCC,OAAO;IACPC,aAAa;AACf;AAEe,SAASC,WAAW,EACjCC,QAAQ,EAGT;IACC,OAAOA;AACT"}}]
+}

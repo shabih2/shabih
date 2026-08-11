@@ -1,0 +1,13 @@
+{
+  "/[locale]/admin/page": "/[locale]/admin",
+  "/[locale]/auth/page": "/[locale]/auth",
+  "/[locale]/links/page": "/[locale]/links",
+  "/[locale]/page": "/[locale]",
+  "/[locale]/profile/page": "/[locale]/profile",
+  "/[locale]/r/[slug]/[shabih_id]/page": "/[locale]/r/[slug]/[shabih_id]",
+  "/[locale]/r/[slug]/auth/page": "/[locale]/r/[slug]/auth",
+  "/[locale]/r/[slug]/dashboard/page": "/[locale]/r/[slug]/dashboard",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico"
+}

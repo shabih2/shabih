@@ -1,0 +1,13 @@
+{
+  "/[locale]/admin/page": "app/[locale]/admin/page.js",
+  "/[locale]/auth/page": "app/[locale]/auth/page.js",
+  "/[locale]/links/page": "app/[locale]/links/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/profile/page": "app/[locale]/profile/page.js",
+  "/[locale]/r/[slug]/[shabih_id]/page": "app/[locale]/r/[slug]/[shabih_id]/page.js",
+  "/[locale]/r/[slug]/auth/page": "app/[locale]/r/[slug]/auth/page.js",
+  "/[locale]/r/[slug]/dashboard/page": "app/[locale]/r/[slug]/dashboard/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}

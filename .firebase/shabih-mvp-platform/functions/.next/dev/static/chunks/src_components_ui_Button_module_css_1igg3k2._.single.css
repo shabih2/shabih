@@ -1,0 +1,113 @@
+/* [project]/src/components/ui/Button.module.css [app-client] (css) */
+.Button-module__8RiFmG__button {
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.Button-module__8RiFmG__button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.Button-module__8RiFmG__button:active:not(:disabled) {
+  transform: scale(.97);
+}
+
+.Button-module__8RiFmG__sm {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-sm);
+}
+
+.Button-module__8RiFmG__md {
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--font-size-base);
+}
+
+.Button-module__8RiFmG__lg {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-md);
+  border-radius: var(--radius-lg);
+}
+
+.Button-module__8RiFmG__primary {
+  background: var(--accent-gold);
+  color: var(--text-inverse);
+}
+
+.Button-module__8RiFmG__primary:hover:not(:disabled) {
+  background: var(--accent-gold-hover);
+  box-shadow: 0 4px 16px #ffba1a4d;
+}
+
+.Button-module__8RiFmG__secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid #4149584d;
+}
+
+.Button-module__8RiFmG__secondary:hover:not(:disabled) {
+  background: var(--bg-surface-hover);
+}
+
+.Button-module__8RiFmG__outline {
+  color: var(--accent-gold);
+  border: 1.5px solid var(--accent-gold);
+  background: none;
+}
+
+.Button-module__8RiFmG__outline:hover:not(:disabled) {
+  background: var(--accent-gold-light);
+}
+
+.Button-module__8RiFmG__ghost {
+  color: var(--text-secondary);
+  background: none;
+}
+
+.Button-module__8RiFmG__ghost:hover:not(:disabled) {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.Button-module__8RiFmG__danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.Button-module__8RiFmG__danger:hover:not(:disabled) {
+  box-shadow: 0 4px 16px #dd3c3c4d;
+}
+
+.Button-module__8RiFmG__fullWidth {
+  width: 100%;
+}
+
+.Button-module__8RiFmG__spinner {
+  border: 2px solid #0000;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: .6s linear infinite Button-module__8RiFmG__spin;
+}
+
+@keyframes Button-module__8RiFmG__spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*# sourceMappingURL=src_components_ui_Button_module_css_1igg3k2._.single.css.map*/
