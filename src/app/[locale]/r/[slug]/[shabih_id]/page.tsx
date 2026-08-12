@@ -18,6 +18,9 @@ export default function CustomerLandingPage({
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<number>(300); // 5 minutes (300 seconds)
+  const [ambassadorName, setAmbassadorName] = useState('سعد الحربي');
+  const [globalExpiry, setGlobalExpiry] = useState<number>(7); // 7 days
 
   useEffect(() => {
     // If they already claimed from this restaurant, go straight to QR
@@ -25,7 +28,35 @@ export default function CustomerLandingPage({
     if (localStorage.getItem(claimedKey)) {
       setStep('inactive_qr'); 
     }
-  }, [slug]);
+
+    // Mock fetching ambassador name based on ID
+    // In production, this fetches from Firestore
+    if (shabih_id === '0500000000') {
+      setAmbassadorName('علي الحربي');
+    }
+  }, [slug, shabih_id]);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (step === 'active_qr') {
+      interval = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            setStep('inactive_qr');
+            return 300; // Reset for next activation
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [step]);
+
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  };
 
   const handleSendOtp = () => {
     if (phone.length < 9) return;
@@ -66,7 +97,7 @@ export default function CustomerLandingPage({
         
         <h1 className={styles.title}>
           اهداء من {slug === 'alburger' ? 'مطعم البرجر' : 'مطعم الاطفال'} <br/>
-          لأصدقاء ومتابعين سعد الحربي
+          لأصدقاء ومتابعين {ambassadorName}
         </h1>
 
         <div className={styles.phoneInputContainer}>
@@ -155,7 +186,7 @@ export default function CustomerLandingPage({
 
       {step === 'active_qr' && (
         <>
-          <h1 className={styles.successText}>مبروك!</h1>
+          <h1 className={styles.successText}>جاهز للالتقاط</h1>
           
           <div className={styles.qrContainer}>
             <div className={styles.qrClear}>
@@ -168,8 +199,20 @@ export default function CustomerLandingPage({
             </div>
           </div>
 
-          <p className={styles.instruction}>أظهر هذا الباركود للكاشير لاستلام الضيافة</p>
+          <p className={styles.instruction} style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--danger)' }}>
+            {formatTime(timeLeft)}
+          </p>
         </>
+      )}
+
+      {(step === 'inactive_qr' || step === 'active_qr') && (
+        <div style={{ marginTop: 'auto', paddingTop: '32px', color: 'var(--text-tertiary)', fontSize: '14px' }}>
+          {globalExpiry > 0 ? (
+            <p>متبقي {globalExpiry} أيام على انتهاء الصلاحية</p>
+          ) : (
+            <p style={{ color: 'var(--danger)', fontWeight: 'bold' }}>منتهي</p>
+          )}
+        </div>
       )}
     </main>
   );
