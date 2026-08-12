@@ -17,10 +17,10 @@ const icons: Record<string, React.ReactNode> = {
     <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
   ),
   shabih: (
-    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    <img src="/logo.png" alt="Shabih Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
   ),
   'shabih-active': (
-    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><circle cx="20" cy="14" r="3" fill="currentColor" stroke="none"/></svg>
+    <img src="/logo.png" alt="Shabih Logo Active" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
   ),
   store: (
     <svg viewBox="0 0 24 24"><path d="M3 9l1-4h16l1 4"/><path d="M3 9v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9"/><path d="M9 21V13h6v8"/><path d="M3 9h18"/></svg>
