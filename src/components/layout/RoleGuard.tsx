@@ -28,14 +28,16 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
         // Redirect to specific restaurant login
         const slug = pathname.split('/r/')[1]?.split('/')[0];
         if (slug && !pathname.endsWith('/auth')) {
-          window.location.href = `/${pathname.split('/')[1] || 'ar'}/r/${slug}/auth`;
+          const locale = window.location.pathname.split('/')[1] || 'ar';
+          window.location.href = `/${locale}/r/${slug}/auth`;
         } else {
           setLoading(false);
           setIsAuthorized(true); // Allow them to see the auth page
         }
       } else {
         if (!pathname.endsWith('/auth') && pathname !== '/' && pathname !== '/ar' && pathname !== '/en') {
-          window.location.href = `/${pathname.split('/')[1] || 'ar'}/auth`;
+          const locale = window.location.pathname.split('/')[1] || 'ar';
+          window.location.href = `/${locale}/auth`;
         } else {
           setLoading(false);
           setIsAuthorized(true);
@@ -54,13 +56,15 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
 
     if (isRestaurantRoute && !isRestaurantSession) {
       // User trying to access restaurant dashboard
-      window.location.href = `/${pathname.split('/')[1] || 'ar'}/profile`;
+      const locale = window.location.pathname.split('/')[1] || 'ar';
+      window.location.href = `/${locale}/profile`;
       return;
     }
 
     if (!isRestaurantRoute && isRestaurantSession) {
       // Restaurant trying to access user app
-      window.location.href = `/${pathname.split('/')[1] || 'ar'}/r/${session}/dashboard`;
+      const locale = window.location.pathname.split('/')[1] || 'ar';
+      window.location.href = `/${locale}/r/${session}/dashboard`;
       return;
     }
 
