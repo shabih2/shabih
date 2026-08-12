@@ -1,13 +1,10 @@
 'use client';
 
-import { useState, use } from 'react';
-import { useTranslations } from 'next-intl';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { QRCodeSVG } from 'qrcode.react';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
-import Icon from '@/components/ui/Icon';
-import PhoneInput from '@/components/ui/PhoneInput';
 
 export default function CustomerLandingPage({
   params,
@@ -15,106 +12,165 @@ export default function CustomerLandingPage({
   params: Promise<{ slug: string; shabih_id: string }>;
 }) {
   const { slug, shabih_id } = use(params);
-  const t = useTranslations();
   const router = useRouter();
 
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<'phone' | 'otp' | 'inactive_qr' | 'active_qr'>('phone');
   const [phone, setPhone] = useState('');
+  const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleClaim = () => {
+  useEffect(() => {
+    // If they already claimed from this restaurant, go straight to QR
+    const claimedKey = `customer_claimed_${slug}`;
+    if (localStorage.getItem(claimedKey)) {
+      setStep('inactive_qr'); 
+    }
+  }, [slug]);
+
+  const handleSendOtp = () => {
     if (phone.length < 9) return;
-    
     setLoading(true);
-    // Simulate API call to claim the hospitality
     setTimeout(() => {
       setLoading(false);
-      setStep(3); // Success step with QR
+      setStep('otp');
     }, 1000);
   };
 
+  const handleVerifyOtp = () => {
+    if (!otp) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      const normalizeNumber = (str: string) => str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
+      const normalizedPhone = normalizeNumber(phone);
+      
+      localStorage.setItem(`customer_claimed_${slug}`, 'true');
+      setStep('inactive_qr');
+    }, 1000);
+  };
+
+  const handleActivateQr = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setStep('active_qr');
+    }, 1000);
+  };
+
+  if (step === 'phone') {
+    return (
+      <main className={styles.main}>
+        <div className={styles.avatar}>
+          <img src="/logo.png" alt="Ambassador Avatar" />
+        </div>
+        
+        <h1 className={styles.title}>
+          اهداء من {slug === 'alburger' ? 'مطعم البرجر' : 'مطعم الاطفال'} <br/>
+          لأصدقاء ومتابعين سعد الحربي
+        </h1>
+
+        <div className={styles.phoneInputContainer}>
+          <input
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="05 _ _ _ _ _ _ _ _"
+            className={styles.phoneInput}
+            dir="ltr"
+          />
+          <Button 
+            variant="primary" 
+            onClick={handleSendOtp} 
+            loading={loading}
+            disabled={phone.length < 9}
+          >
+            موافق
+          </Button>
+        </div>
+      </main>
+    );
+  }
+
+  if (step === 'otp') {
+    return (
+      <main className={styles.main}>
+        <div className={styles.phoneInputContainer} style={{ marginTop: '40px' }}>
+          <h1 className={styles.title} style={{ marginBottom: '16px' }}>أدخل رمز التحقق</h1>
+          <input
+            type="tel"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            placeholder="- - - -"
+            className={styles.phoneInput}
+            dir="ltr"
+            maxLength={4}
+          />
+          <Button 
+            variant="primary" 
+            onClick={handleVerifyOtp} 
+            loading={loading}
+            disabled={otp.length < 4}
+          >
+            تأكيد
+          </Button>
+        </div>
+      </main>
+    );
+  }
+
+  // QR States
   return (
     <main className={styles.main}>
-      
-      <div className={styles.card}>
-        
-        <div className={styles.shabihProfile}>
-          <div className={styles.avatar}>
-            <Icon name="user" size="xl" />
-          </div>
-          <div className={styles.shabihName} dir="ltr">+{shabih_id}</div>
-        </div>
+      <div className={styles.logoContainer}>
+        <img src="/logo.png" alt="Restaurant Logo" width={80} height={80} />
+        <h2 className={styles.restaurantName}>
+          {slug === 'alburger' ? 'مطعم البرجر' : 'مطعم الاطفال'}
+        </h2>
+      </div>
 
-        {step === 1 && (
-          <>
-            <h1 className={styles.title}>{t('hospitality.surpriseTitle')}</h1>
-            <p className={styles.subtitle}>{t('hospitality.beThereThisWeek')}</p>
-            
-            <Button 
-              variant="primary" 
-              size="lg" 
-              fullWidth 
-              icon="gift"
-              onClick={() => setStep(2)}
-            >
-              {t('hospitality.getIt')}
-            </Button>
-          </>
-        )}
-
-        {step === 2 && (
-          <>
-            <h1 className={styles.title} style={{ fontSize: 'var(--font-size-xl)' }}>
-              سجل رقمك للحصول عليها
-            </h1>
-            <div style={{ width: '100%' }}>
-              <PhoneInput
-                value={phone}
-                onChange={setPhone}
-                disabled={loading}
+      {step === 'inactive_qr' && (
+        <>
+          <h1 className={styles.successText}>لقد حصلت عليها!</h1>
+          
+          <div className={styles.qrContainer}>
+            <div className={styles.qrBlurred}>
+              <QRCodeSVG 
+                value="dummy-qr-code"
+                size={220}
+                bgColor={"#ffffff"}
+                fgColor={"#000000"}
               />
             </div>
-            <Button 
-              variant="primary" 
-              size="lg" 
-              fullWidth 
-              onClick={handleClaim}
-              loading={loading}
-              disabled={phone.length < 9}
-            >
-              تأكيد
-            </Button>
-          </>
-        )}
+          </div>
 
-        {step === 3 && (
-          <>
-            <h1 className={styles.title}>{t('hospitality.gotIt')}</h1>
-            
-            <div className={styles.qrContainer}>
+          <p className={styles.instruction}>اضغط زر التفعيل عندما تكون جاهزا للالتقاط</p>
+          
+          <div style={{ width: '100%', maxWidth: '200px' }}>
+            <Button variant="primary" fullWidth onClick={handleActivateQr} loading={loading}>
+              تفعيل
+            </Button>
+          </div>
+        </>
+      )}
+
+      {step === 'active_qr' && (
+        <>
+          <h1 className={styles.successText}>مبروك!</h1>
+          
+          <div className={styles.qrContainer}>
+            <div className={styles.qrClear}>
               <QRCodeSVG 
                 value={`CLAIM:${slug}:${shabih_id}:${phone}`} 
                 size={220}
                 bgColor={"#ffffff"}
                 fgColor={"#000000"}
               />
-              <p className={styles.qrInstruction}>{t('hospitality.showQrToCashier')}</p>
             </div>
+          </div>
 
-            <div className={styles.expiryText}>
-              <Icon name="window" size="sm" />
-              <span>متبقي 7 أيام و 14 ساعة</span>
-            </div>
-          </>
-        )}
-
-      </div>
-
-      <div className={styles.restaurantBranding}>
-        <Icon name="store" size="sm" />
-        <span>برعاية {slug}</span>
-      </div>
-
+          <p className={styles.instruction}>أظهر هذا الباركود للكاشير لاستلام الضيافة</p>
+        </>
+      )}
     </main>
   );
 }

@@ -3,115 +3,120 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: var(--space-6) var(--content-padding);
+  padding: var(--space-8) var(--content-padding);
+  background-color: var(--bg-surface);
   text-align: center;
-  background: radial-gradient(circle at top, hsla(220, 15%, 15%, 1), var(--bg-default));
-}
-
-.card {
-  width: 100%;
-  max-width: 400px;
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: var(--space-8) var(--space-6);
-  border-radius: var(--radius-2xl);
-  border: 1px solid hsla(45, 100%, 50%, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-6);
-  animation: floatUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  box-shadow: 0 10px 40px -10px hsla(45, 100%, 50%, 0.1);
-}
-
-@keyframes floatUp {
-  from { opacity: 0; transform: translateY(30px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.shabihProfile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
-  margin-top: -60px; /* pull up */
 }
 
 .avatar {
-  width: 88px;
-  height: 88px;
-  border-radius: var(--radius-full);
-  background: var(--bg-surface);
-  border: 4px solid var(--accent-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  box-shadow: 0 4px 12px hsla(45, 100%, 50%, 0.2);
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-6);
+  background-color: #eee;
 }
 
-.shabihName {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .title {
   font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--accent-gold);
-  line-height: 1.2;
-}
-
-.subtitle {
-  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
   color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-12);
 }
 
-.qrContainer {
-  background: white;
-  padding: var(--space-4);
-  border-radius: var(--radius-xl);
+.phoneInputContainer {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin: 0 auto;
+}
+
+.phoneInput {
+  font-size: var(--font-size-2xl);
+  letter-spacing: 4px;
+  text-align: center;
+  background: transparent;
+  border: 2px solid var(--accent-blue);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  color: var(--text-primary);
+  outline: none;
+  width: 100%;
+}
+
+.phoneInput::placeholder {
+  color: var(--text-tertiary);
+  letter-spacing: 4px;
+}
+
+.logoContainer {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-6);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  width: 100%;
 }
 
-.qrInstruction {
-  font-size: var(--font-size-sm);
-  color: #000;
+.restaurantName {
+  color: var(--text-primary);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  margin-top: var(--space-2);
 }
 
-.expiryText {
-  font-size: var(--font-size-sm);
-  color: var(--danger);
-  font-weight: var(--font-weight-medium);
+.successText {
+  color: var(--accent-blue);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-8);
+}
+
+.qrContainer {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto var(--space-6);
+  border: 2px solid #333;
+  position: relative;
+  background: white;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: var(--space-2);
 }
 
-.restaurantBranding {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-top: var(--space-4);
-  color: var(--text-tertiary);
-  font-size: var(--font-size-sm);
-}
-
-.confetti {
-  position: fixed;
-  top: 0;
-  left: 0;
+.qrBlurred {
+  filter: blur(8px);
+  opacity: 0.3;
+  pointer-events: none;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qrClear {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.instruction {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  margin-bottom: var(--space-6);
 }
