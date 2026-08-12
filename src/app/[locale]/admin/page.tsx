@@ -39,7 +39,7 @@ export default function AdminDashboard() {
   return (
     <main className={styles.main}>
       <header className={styles.header}>
-        <div className={styles.headerTitle}>شبيح - الإدارة العليا</div>
+        <div className={styles.headerTitle}>سفير - الإدارة العليا</div>
         <Button variant="ghost" icon="logout" onClick={() => router.push('/')} />
       </header>
 
@@ -52,7 +52,7 @@ export default function AdminDashboard() {
         <Card className={styles.statCard}>
           <div className={styles.statIcon}><Icon name="shabih" size="lg" /></div>
           <div className={styles.statValue}>{stats.totalAmbassadors}</div>
-          <div className={styles.statLabel}>إجمالي الشبيحة</div>
+          <div className={styles.statLabel}>إجمالي السفراء</div>
         </Card>
         <Card className={styles.statCard}>
           <div className={styles.statIcon}><Icon name="gift" size="lg" /></div>

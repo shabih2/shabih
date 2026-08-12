@@ -46,9 +46,9 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
 
     // Determine current role based on session
     // In our MVP simulation:
-    // If session starts with +966, it's a customer/ambassador.
-    // If session is a slug, it's a restaurant.
-    const isRestaurantSession = !session.startsWith('+');
+    // If session is just digits or starts with +, it's a customer/ambassador.
+    // If session is an alphanumeric slug, it's a restaurant.
+    const isRestaurantSession = !session.startsWith('+') && isNaN(Number(session));
 
     if (isRestaurantRoute && !isRestaurantSession) {
       // User trying to access restaurant dashboard

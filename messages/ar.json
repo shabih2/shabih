@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "شبيح",
+    "appName": "سفير",
     "language": "العربية",
     "switchLang": "EN",
     "loading": "جاري التحميل...",
@@ -30,7 +30,7 @@
     "resendOtp": "إعادة إرسال",
     "resendIn": "إعادة الإرسال خلال {seconds} ثانية",
     "areYouRestaurant": "هل أنت مطعم؟ سجل من هنا",
-    "areYouShabih": "هل أنت شبيح؟ سجل من هنا",
+    "areYouShabih": "هل أنت سفير؟ سجل من هنا",
     "restaurantLogin": "تسجيل دخول المطعم",
     "restaurantName": "اسم المطعم",
     "restaurantNamePlaceholder": "أدخل اسم المطعم",
@@ -53,13 +53,13 @@
     "branches": "فروع",
     "hospitality": "ضيافة",
     "recruitQr": "QR التجنيد",
-    "recruitQrDesc": "اعرضه في المطعم ليسجل الزوار كشبيحة",
+    "recruitQrDesc": "اعرضه في المطعم ليسجل الزوار كسفراء",
     "showQr": "عرض QR",
     "downloadQr": "تحميل",
-    "topShabihs": "شبيحة مميزون",
+    "topShabihs": "سفراء مميزون",
     "select": "اختيار",
     "trialDishes": "أطباق تجربة",
-    "trialDishesLocked": "اختر شبيحاً مميزاً لتفعيل أطباق التجربة",
+    "trialDishesLocked": "اختر سفيراً مميزاً لتفعيل أطباق التجربة",
     "addDish": "طبق جديد",
     "rewardsLog": "سجل الضيافات",
     "redeemed": "مُستلم",
@@ -102,19 +102,19 @@
   "activity": {
     "customer": "عميل",
     "activeCustomer": "عميل نشط",
-    "ambassador": "شبيح",
-    "activeAmbassador": "شبيح نشط"
+    "ambassador": "سفير",
+    "activeAmbassador": "سفير نشط"
   },
   "join": {
     "inviteTitle": "{restaurant} يدعوك لتكون سفيراً",
     "step1": "صوّر تجربتك",
     "step2": "شاركها مع متابعينك",
     "step3": "متابعينك يحصلون على ضيافة",
-    "registerAsShabih": "سجّل كشبيح الآن"
+    "registerAsShabih": "سجّل كسفير الآن"
   },
   "profile": {
     "myAccount": "حسابي",
-    "shabihMode": "وضع الشبيح",
+    "shabihMode": "وضع السفير",
     "notActivated": "غير مفعّل",
     "activated": "مفعّل",
     "activateNow": "تفعيل الآن",
