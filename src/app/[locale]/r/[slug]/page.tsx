@@ -17,17 +17,23 @@ export default function BranchRecruitPage({
 
   const [view, setView] = useState<'main' | 'auth' | 'howItWorks'>('main');
   const [session, setSession] = useState<string | null>(null);
+  const [savedName, setSavedName] = useState<string | null>(null);
   
   // Auth state
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState('');
-  const [authStep, setAuthStep] = useState<'phone' | 'otp'>('phone');
+  const [shabihName, setShabihName] = useState('');
+  const [authStep, setAuthStep] = useState<'phone' | 'otp' | 'name'>('phone');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const activeSession = localStorage.getItem('shabih_session');
     if (activeSession) {
       setSession(activeSession);
+    }
+    const name = localStorage.getItem('shabih_name');
+    if (name) {
+      setSavedName(name);
     }
   }, []);
 
@@ -59,11 +65,44 @@ export default function BranchRecruitPage({
       setLoading(false);
       localStorage.setItem('shabih_session', phone);
       setSession(phone);
+      
+      const existingName = localStorage.getItem('shabih_name');
+      if (existingName) {
+        setSavedName(existingName);
+        setView('main');
+        setAuthStep('phone');
+        setPhone('');
+        setOtp('');
+      } else {
+        setAuthStep('name');
+      }
+    }, 1000);
+  };
+
+  const handleSaveName = () => {
+    if (!shabihName.trim()) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      localStorage.setItem('shabih_name', shabihName.trim());
+      setSavedName(shabihName.trim());
       setView('main');
       setAuthStep('phone');
       setPhone('');
       setOtp('');
-    }, 1000);
+      setShabihName('');
+    }, 500);
+  };
+
+  const renderTopBar = () => {
+    if (!session || !savedName) return null;
+    return (
+      <div className={styles.topBar}>
+        <button className={styles.userName} onClick={() => router.push('/links')}>
+          {savedName}
+        </button>
+      </div>
+    );
   };
 
   const renderLogo = () => (
@@ -101,7 +140,7 @@ export default function BranchRecruitPage({
                 {t('auth.sendOtp')}
               </Button>
             </>
-          ) : (
+          ) : authStep === 'otp' ? (
             <>
               <input
                 type="tel"
@@ -120,6 +159,26 @@ export default function BranchRecruitPage({
                 style={{ marginTop: '32px' }}
               >
                 {t('auth.verify')}
+              </Button>
+            </>
+          ) : (
+            <>
+              <p className={styles.nameInputLabel}>ماهو الاسم الذي تريد ان يظهر في الاهداء؟</p>
+              <input
+                type="text"
+                value={shabihName}
+                onChange={(e) => setShabihName(e.target.value)}
+                className={styles.nameInput}
+                autoFocus
+              />
+              <Button 
+                variant="primary" 
+                onClick={handleSaveName} 
+                loading={loading}
+                disabled={!shabihName.trim()}
+                style={{ marginTop: '32px' }}
+              >
+                تأكيد
               </Button>
             </>
           )}
@@ -158,6 +217,7 @@ export default function BranchRecruitPage({
 
   return (
     <main className={styles.main}>
+      {renderTopBar()}
       {renderLogo()}
 
       <div className={styles.textContent}>

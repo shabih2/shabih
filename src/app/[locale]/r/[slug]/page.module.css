@@ -101,3 +101,42 @@
   color: var(--text-tertiary);
   letter-spacing: 4px;
 }
+
+.topBar {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-6);
+  z-index: 10;
+}
+
+.userName {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: var(--space-2);
+}
+
+.userName:hover {
+  color: var(--accent-blue);
+}
+
+.nameInputLabel {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.nameInput {
+  font-size: var(--font-size-lg);
+  text-align: center;
+  background: transparent;
+  border: 2px solid var(--accent-blue);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  color: var(--text-primary);
+  outline: none;
+  width: 100%;
+}
