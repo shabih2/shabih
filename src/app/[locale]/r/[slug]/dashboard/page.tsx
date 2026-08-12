@@ -146,7 +146,7 @@ export default function RestaurantDashboard({
                 </p>
                 <div style={{ background: 'white', padding: '16px', borderRadius: '12px', display: 'inline-block', marginBottom: '16px' }}>
                   <QRCodeSVG 
-                    value={`https://${slug}.shabih.io/auth`} 
+                    value={typeof window !== 'undefined' ? `${window.location.origin}/ar/r/${slug}` : `https://${slug}.shabih.io`} 
                     size={200}
                     bgColor={"#ffffff"}
                     fgColor={"#000000"}
