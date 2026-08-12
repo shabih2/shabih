@@ -70,7 +70,7 @@ export default function HomePage() {
             size="lg"
             fullWidth
             icon="store"
-            onClick={() => router.push('/restaurant/auth')}
+            onClick={() => router.push('/r/alburger/auth')}
           >
             {t('auth.areYouRestaurant')}
           </Button>
