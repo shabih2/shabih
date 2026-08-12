@@ -13,7 +13,7 @@ export default function BranchRecruitPage({
 }) {
   const { slug } = params;
   const t = useTranslations();
-  const router = useRouter();
+  const locale = useLocale();
 
   const [view, setView] = useState<'main' | 'auth' | 'howItWorks'>('main');
   const [session, setSession] = useState<string | null>(null);
@@ -101,7 +101,7 @@ export default function BranchRecruitPage({
     if (!session || !savedName) return null;
     return (
       <div className={styles.topBar}>
-        <button className={styles.userName} onClick={() => router.push('/links')}>
+        <button className={styles.userName} onClick={() => window.location.href = `/${locale}/links`}>
           {savedName}
         </button>
       </div>

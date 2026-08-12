@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
@@ -10,6 +11,8 @@ import Input from '@/components/ui/Input';
 
 export default function AdminDashboard() {
   const router = useRouter();
+  const locale = useLocale();
+  const t = useTranslations('admin');
   const [showAddModal, setShowAddModal] = useState(false);
   const [newSlug, setNewSlug] = useState('');
   const [newName, setNewName] = useState('');
@@ -40,7 +43,7 @@ export default function AdminDashboard() {
     <main className={styles.main}>
       <header className={styles.header}>
         <div className={styles.headerTitle}>سفير - الإدارة العليا</div>
-        <Button variant="ghost" icon="logout" onClick={() => router.push('/')} />
+        <Button variant="ghost" icon="logout" onClick={() => window.location.href = `/${locale}`} />
       </header>
 
       <div className={styles.statsGrid}>

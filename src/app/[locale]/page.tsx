@@ -1,14 +1,13 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { useRouter } from '@/i18n/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 
 export default function HomePage() {
   const t = useTranslations();
-  const router = useRouter();
+  const locale = useLocale();
 
   return (
     <main className={styles.main}>
@@ -60,7 +59,7 @@ export default function HomePage() {
             fullWidth
             icon="arrow-right"
             iconPosition="end"
-            onClick={() => router.push('/auth')}
+            onClick={() => window.location.href = `/${locale}/auth`}
           >
             {t('auth.loginTitle')}
           </Button>
@@ -70,7 +69,7 @@ export default function HomePage() {
             size="lg"
             fullWidth
             icon="store"
-            onClick={() => router.push('/r/alburger/auth')}
+            onClick={() => window.location.href = `/${locale}/r/alburger/auth`}
           >
             {t('auth.areYouRestaurant')}
           </Button>
