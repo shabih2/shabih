@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';

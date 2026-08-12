@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, use } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { QRCodeSVG } from 'qrcode.react';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
