@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Icon from '@/components/ui/Icon';
 
 interface RoleGuardProps {
@@ -14,6 +14,7 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations('common');
+  const locale = useLocale();
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -28,7 +29,6 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
         // Redirect to specific restaurant login
         const slug = pathname.split('/r/')[1]?.split('/')[0];
         if (slug && !pathname.endsWith('/auth')) {
-          const locale = window.location.pathname.split('/')[1] || 'ar';
           window.location.href = `/${locale}/r/${slug}/auth`;
         } else {
           setLoading(false);
@@ -36,7 +36,6 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
         }
       } else {
         if (!pathname.endsWith('/auth') && pathname !== '/' && pathname !== '/ar' && pathname !== '/en') {
-          const locale = window.location.pathname.split('/')[1] || 'ar';
           window.location.href = `/${locale}/auth`;
         } else {
           setLoading(false);
@@ -56,14 +55,12 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
 
     if (isRestaurantRoute && !isRestaurantSession) {
       // User trying to access restaurant dashboard
-      const locale = window.location.pathname.split('/')[1] || 'ar';
       window.location.href = `/${locale}/profile`;
       return;
     }
 
     if (!isRestaurantRoute && isRestaurantSession) {
       // Restaurant trying to access user app
-      const locale = window.location.pathname.split('/')[1] || 'ar';
       window.location.href = `/${locale}/r/${session}/dashboard`;
       return;
     }

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, use } from 'react';
-import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
@@ -20,17 +20,17 @@ const QRScanner = dynamic(() => import('@/components/ui/QRScanner'), {
 export default function RestaurantDashboard({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = use(params);
+  const { slug } = params;
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
 
   const [activeTab, setActiveTab] = useState<'operations' | 'shabihs' | 'settings'>('operations');
 
   const handleLogout = () => {
     localStorage.removeItem('shabih_session');
-    const locale = window.location.pathname.split('/')[1] || 'ar';
     window.location.href = `/${locale}/r/${slug}/auth`;
   };
 

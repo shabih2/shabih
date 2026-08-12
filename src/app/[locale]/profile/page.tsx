@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
@@ -13,6 +13,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 export default function ProfilePage() {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
   
   const [phone, setPhone] = useState('');
@@ -61,7 +62,6 @@ export default function ProfilePage() {
 
   const handleLogout = () => {
     localStorage.removeItem('shabih_session');
-    const locale = window.location.pathname.split('/')[1] || 'ar';
     window.location.href = `/${locale}`;
   };
 

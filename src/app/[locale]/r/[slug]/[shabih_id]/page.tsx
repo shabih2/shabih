@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/navigation';
 import { QRCodeSVG } from 'qrcode.react';
 import styles from './page.module.css';
@@ -9,9 +9,9 @@ import Button from '@/components/ui/Button';
 export default function CustomerLandingPage({
   params,
 }: {
-  params: Promise<{ slug: string; shabih_id: string }>;
+  params: { slug: string; shabih_id: string };
 }) {
-  const { slug, shabih_id } = use(params);
+  const { slug, shabih_id } = params;
   const router = useRouter();
 
   const [step, setStep] = useState<'phone' | 'otp' | 'inactive_qr' | 'active_qr'>('phone');

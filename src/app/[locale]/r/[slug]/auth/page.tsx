@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, use } from 'react';
+import { useState } from 'react';
 import { useRouter } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
@@ -11,10 +11,11 @@ import Input from '@/components/ui/Input';
 export default function RestaurantAuthPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = use(params);
+  const { slug } = params;
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
 
   const [password, setPassword] = useState('');
@@ -32,7 +33,6 @@ export default function RestaurantAuthPage({
       if (password === '1234') {
         // Successful login
         localStorage.setItem('shabih_session', slug);
-        const locale = window.location.pathname.split('/')[1] || 'ar';
         window.location.href = `/${locale}/r/${slug}/dashboard`;
       } else {
         setError('كلمة المرور غير صحيحة، الرمز السري للمحاكاة هو 1234');

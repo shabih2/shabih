@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
@@ -13,6 +13,7 @@ import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function AuthPage() {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
 
   const [step, setStep] = useState<1 | 2>(1);
@@ -79,7 +80,6 @@ export default function AuthPage() {
       localStorage.setItem('shabih_session', formattedPhone);
       
       // Redirect to profile or dashboard
-      const locale = window.location.pathname.split('/')[1] || 'ar';
       window.location.href = `/${locale}/profile`;
       
     } catch (err) {

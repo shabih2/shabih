@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import styles from './page.module.css';
@@ -9,9 +9,9 @@ import Button from '@/components/ui/Button';
 export default function BranchRecruitPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = use(params);
+  const { slug } = params;
   const t = useTranslations();
   const router = useRouter();
 
