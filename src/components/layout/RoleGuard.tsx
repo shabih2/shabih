@@ -48,7 +48,9 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
     // In our MVP simulation:
     // If session is just digits or starts with +, it's a customer/ambassador.
     // If session is an alphanumeric slug, it's a restaurant.
-    const isRestaurantSession = !session.startsWith('+') && isNaN(Number(session));
+    const normalizeNumber = (str: string) => str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
+    const normalizedSession = normalizeNumber(session);
+    const isRestaurantSession = !normalizedSession.startsWith('+') && isNaN(Number(normalizedSession));
 
     if (isRestaurantRoute && !isRestaurantSession) {
       // User trying to access restaurant dashboard

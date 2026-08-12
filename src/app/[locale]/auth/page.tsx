@@ -50,7 +50,9 @@ export default function AuthPage() {
     setLoading(true);
 
     try {
-      const formattedPhone = `+966${phone}`;
+      const normalizeNumber = (str: string) => str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
+      const normalizedPhone = normalizeNumber(phone);
+      const formattedPhone = `+966${normalizedPhone}`;
       
       // In a real app, we would use signInWithCredential here
       // But since we are simulating OTP, we will just interact with Firestore

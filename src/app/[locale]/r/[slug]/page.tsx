@@ -63,8 +63,11 @@ export default function BranchRecruitPage({
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      localStorage.setItem('shabih_session', phone);
-      setSession(phone);
+      const normalizeNumber = (str: string) => str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
+      const normalizedPhone = normalizeNumber(phone);
+      
+      localStorage.setItem('shabih_session', normalizedPhone);
+      setSession(normalizedPhone);
       
       const existingName = localStorage.getItem('shabih_name');
       if (existingName) {
