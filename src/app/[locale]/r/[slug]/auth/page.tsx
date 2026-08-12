@@ -32,7 +32,8 @@ export default function RestaurantAuthPage({
       if (password === '1234') {
         // Successful login
         localStorage.setItem('shabih_session', slug);
-        router.push(`/r/${slug}/dashboard`);
+        const locale = window.location.pathname.split('/')[1] || 'ar';
+        window.location.href = `/${locale}/r/${slug}/dashboard`;
       } else {
         setError('كلمة المرور غير صحيحة، الرمز السري للمحاكاة هو 1234');
         setLoading(false);

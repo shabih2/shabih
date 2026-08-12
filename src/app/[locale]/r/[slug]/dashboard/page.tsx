@@ -30,7 +30,8 @@ export default function RestaurantDashboard({
 
   const handleLogout = () => {
     localStorage.removeItem('shabih_session');
-    router.push(`/r/${slug}/auth`);
+    const locale = window.location.pathname.split('/')[1] || 'ar';
+    window.location.href = `/${locale}/r/${slug}/auth`;
   };
 
   return (

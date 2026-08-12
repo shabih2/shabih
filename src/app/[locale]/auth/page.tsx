@@ -79,7 +79,8 @@ export default function AuthPage() {
       localStorage.setItem('shabih_session', formattedPhone);
       
       // Redirect to profile or dashboard
-      router.push('/profile');
+      const locale = window.location.pathname.split('/')[1] || 'ar';
+      window.location.href = `/${locale}/profile`;
       
     } catch (err) {
       console.error(err);

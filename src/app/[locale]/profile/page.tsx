@@ -61,7 +61,8 @@ export default function ProfilePage() {
 
   const handleLogout = () => {
     localStorage.removeItem('shabih_session');
-    router.push('/');
+    const locale = window.location.pathname.split('/')[1] || 'ar';
+    window.location.href = `/${locale}`;
   };
 
   if (loading) {
