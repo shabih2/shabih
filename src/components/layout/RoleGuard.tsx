@@ -21,21 +21,21 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
   useEffect(() => {
     // Simulated auth check using localStorage (MVP Lean mode)
     const session = localStorage.getItem('shabih_session');
-    const isRestaurantRoute = pathname.includes('/r/');
+    const isRestaurantRoute = pathname ? pathname.includes('/r/') : false;
     
     if (!session) {
       // Not logged in
       if (isRestaurantRoute) {
         // Redirect to specific restaurant login
-        const slug = pathname.split('/r/')[1]?.split('/')[0];
-        if (slug && !pathname.endsWith('/auth')) {
+        const slug = pathname ? pathname.split('/r/')[1]?.split('/')[0] : null;
+        if (slug && (!pathname || !pathname.endsWith('/auth'))) {
           window.location.href = `/${locale}/r/${slug}/auth`;
         } else {
           setLoading(false);
           setIsAuthorized(true); // Allow them to see the auth page
         }
       } else {
-        if (!pathname.endsWith('/auth') && pathname !== '/' && pathname !== '/ar' && pathname !== '/en') {
+        if (!pathname || (!pathname.endsWith('/auth') && pathname !== '/' && pathname !== '/ar' && pathname !== '/en')) {
           window.location.href = `/${locale}/auth`;
         } else {
           setLoading(false);
@@ -55,7 +55,12 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
 
     if (isRestaurantRoute && !isRestaurantSession) {
       // User trying to access restaurant dashboard
-      window.location.href = `/${locale}/profile`;
+      const slug = pathname ? pathname.split('/r/')[1]?.split('/')[0] : null;
+      if (slug && (!pathname || !pathname.endsWith('/auth'))) {
+        window.location.href = `/${locale}/r/${slug}/auth`;
+      } else {
+        window.location.href = `/${locale}/profile`;
+      }
       return;
     }
 

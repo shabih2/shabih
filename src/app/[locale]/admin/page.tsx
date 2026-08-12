@@ -80,7 +80,7 @@ export default function AdminDashboard() {
                 <div className={styles.restaurantSlug} dir="ltr">{r.slug}.shabih.io</div>
               </div>
             </div>
-            <Button variant="outline" size="sm" onClick={() => window.open(`/r/${r.slug}/dashboard`, '_blank')}>
+            <Button variant="outline" size="sm" onClick={() => window.open(`/r/${r.slug}/auth`, '_blank')}>
               دخول
             </Button>
           </Card>
