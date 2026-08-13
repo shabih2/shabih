@@ -31,17 +31,17 @@
   font-family: var(--font-family);
   outline: none;
   transition: all var(--transition-base);
-  caret-color: var(--accent-gold);
+  caret-color: var(--accent-blue);
 }
 
 .otpInput:focus {
-  border-color: var(--accent-gold);
-  box-shadow: 0 0 0 3px var(--accent-gold-light);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px var(--accent-blue-light);
 }
 
 .otpInput.filled {
-  border-color: var(--accent-gold);
-  background: var(--accent-gold-light);
+  border-color: var(--accent-blue);
+  background: var(--accent-blue-light);
 }
 
 .otpInput:disabled {

@@ -28,8 +28,8 @@
 }
 
 .input:focus {
-  border-color: var(--accent-gold);
-  box-shadow: 0 0 0 3px var(--accent-gold-light);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px var(--accent-blue-light);
 }
 
 .input:disabled {

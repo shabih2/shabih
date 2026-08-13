@@ -16,7 +16,7 @@
 .headerTitle {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  background: var(--gradient-gold);
+  background: var(--gradient-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -48,7 +48,7 @@
 }
 
 .statIcon {
-  color: var(--accent-gold);
+  color: var(--accent-blue);
   margin-bottom: var(--space-2);
 }
 

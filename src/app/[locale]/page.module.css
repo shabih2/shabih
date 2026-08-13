@@ -7,19 +7,7 @@
   overflow: hidden;
 }
 
-/* Background ambient glow */
-.main::before {
-  content: '';
-  position: absolute;
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, hsla(38, 95%, 58%, 0.12) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
+/* Background ambient glow removed for light theme */
 
 .hero {
   flex: 1;
@@ -46,19 +34,19 @@
   width: 80px;
   height: 80px;
   border-radius: var(--radius-xl);
-  background: var(--gradient-card);
-  border: 1px solid hsla(38, 95%, 58%, 0.2);
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-glass-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-gold);
+  box-shadow: var(--shadow-sm);
   animation: float 4s ease-in-out infinite;
 }
 
 .brandName {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-extrabold);
-  background: var(--gradient-gold);
+  background: var(--gradient-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -79,8 +67,7 @@
   flex-direction: column;
   gap: var(--space-4);
   width: 100%;
-  animation: fadeInUp 0.6s ease 0.15s forwards;
-  opacity: 0;
+  animation: fadeInUp 0.6s ease 0.15s both;
 }
 
 .feature {
@@ -105,11 +92,11 @@
   width: 48px;
   height: 48px;
   border-radius: var(--radius-md);
-  background: var(--accent-gold-light);
+  background: var(--accent-blue-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-gold);
+  color: var(--accent-blue);
   flex-shrink: 0;
 }
 
@@ -125,8 +112,7 @@
   flex-direction: column;
   gap: var(--space-3);
   width: 100%;
-  animation: fadeInUp 0.6s ease 0.3s forwards;
-  opacity: 0;
+  animation: fadeInUp 0.6s ease 0.3s both;
 }
 
 /* Footer */

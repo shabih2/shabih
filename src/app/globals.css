@@ -17,50 +17,50 @@
 
 /* ─── CSS Variables ─── */
 :root {
-  /* Colors – Dark Core */
-  --bg-primary: hsl(222, 30%, 6%);
-  --bg-secondary: hsl(222, 25%, 9%);
-  --bg-surface: hsl(222, 22%, 12%);
-  --bg-surface-hover: hsl(222, 20%, 16%);
-  --bg-surface-active: hsl(222, 18%, 20%);
+  /* Colors – Light Core (Shopify-style) */
+  --bg-primary: #f4f6f8;
+  --bg-secondary: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f9fafb;
+  --bg-surface-active: #f3f4f6;
 
   /* Colors – Glass */
-  --bg-glass: hsla(222, 25%, 14%, 0.65);
-  --bg-glass-hover: hsla(222, 25%, 18%, 0.75);
-  --bg-glass-border: hsla(0, 0%, 100%, 0.08);
-  --bg-glass-border-hover: hsla(0, 0%, 100%, 0.14);
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --bg-glass-hover: rgba(255, 255, 255, 0.95);
+  --bg-glass-border: rgba(0, 0, 0, 0.06);
+  --bg-glass-border-hover: rgba(0, 0, 0, 0.12);
 
   /* Colors – Text */
-  --text-primary: hsl(0, 0%, 96%);
-  --text-secondary: hsl(220, 12%, 62%);
-  --text-tertiary: hsl(220, 10%, 42%);
-  --text-inverse: hsl(222, 30%, 6%);
+  --text-primary: #202223;
+  --text-secondary: #6d7175;
+  --text-tertiary: #8c9196;
+  --text-inverse: #ffffff;
 
-  /* Colors – Brand Gold Accent (Hospitality & Rewards) */
-  --accent-gold: hsl(38, 95%, 58%);
-  --accent-gold-hover: hsl(38, 95%, 50%);
-  --accent-gold-light: hsla(38, 95%, 58%, 0.12);
-  --accent-gold-glow: hsla(38, 95%, 58%, 0.25);
+  /* Colors – Brand Gold Accent (Rewards) */
+  --accent-gold: #ffb800;
+  --accent-gold-hover: #e6a600;
+  --accent-gold-light: rgba(255, 184, 0, 0.12);
+  --accent-gold-glow: rgba(255, 184, 0, 0.25);
 
-  /* Colors – Brand Blue (Info & Links) */
-  --accent-blue: hsl(215, 80%, 60%);
-  --accent-blue-hover: hsl(215, 80%, 52%);
-  --accent-blue-light: hsla(215, 80%, 60%, 0.12);
+  /* Colors – Brand Blue (Primary Interactive) */
+  --accent-blue: #2c6ecb;
+  --accent-blue-hover: #1f5199;
+  --accent-blue-light: rgba(44, 110, 203, 0.12);
 
   /* Colors – Gradients */
-  --gradient-gold: linear-gradient(135deg, hsl(38, 95%, 58%), hsl(28, 90%, 48%));
-  --gradient-blue: linear-gradient(135deg, hsl(215, 80%, 60%), hsl(230, 70%, 55%));
-  --gradient-surface: linear-gradient(180deg, hsl(222, 25%, 12%), hsl(222, 30%, 8%));
-  --gradient-hero: linear-gradient(180deg, hsl(222, 30%, 10%) 0%, hsl(222, 30%, 6%) 100%);
-  --gradient-card: linear-gradient(135deg, hsla(222, 25%, 16%, 0.8), hsla(222, 25%, 10%, 0.6));
+  --gradient-gold: linear-gradient(135deg, #ffb800, #ff9900);
+  --gradient-blue: linear-gradient(135deg, #2c6ecb, #1f5199);
+  --gradient-surface: linear-gradient(180deg, #ffffff, #f9fafb);
+  --gradient-hero: linear-gradient(180deg, #f4f6f8 0%, #ffffff 100%);
+  --gradient-card: linear-gradient(135deg, #ffffff, #f9fafb);
 
   /* Colors – Status */
-  --success: hsl(152, 60%, 50%);
-  --success-light: hsla(152, 60%, 50%, 0.12);
-  --warning: hsl(38, 90%, 55%);
-  --warning-light: hsla(38, 90%, 55%, 0.12);
-  --danger: hsl(0, 65%, 55%);
-  --danger-light: hsla(0, 65%, 55%, 0.12);
+  --success: #008060;
+  --success-light: rgba(0, 128, 96, 0.12);
+  --warning: #ffb800;
+  --warning-light: rgba(255, 184, 0, 0.12);
+  --danger: #d82c0d;
+  --danger-light: rgba(216, 44, 13, 0.12);
 
   /* Colors – Activity Levels */
   --level-customer: hsl(220, 10%, 45%);
@@ -116,14 +116,14 @@
   --radius-2xl: 32px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 2px 8px hsla(0, 0%, 0%, 0.3);
-  --shadow-md: 0 4px 16px hsla(0, 0%, 0%, 0.4);
-  --shadow-lg: 0 8px 32px hsla(0, 0%, 0%, 0.5);
-  --shadow-xl: 0 16px 48px hsla(0, 0%, 0%, 0.6);
-  --shadow-gold: 0 4px 20px hsla(38, 95%, 58%, 0.2);
-  --shadow-gold-lg: 0 8px 40px hsla(38, 95%, 58%, 0.3);
-  --shadow-blue: 0 4px 20px hsla(215, 80%, 60%, 0.2);
+  /* Shadows (Shopify Style) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.1);
+  --shadow-gold: 0 4px 12px rgba(255, 184, 0, 0.2);
+  --shadow-gold-lg: 0 8px 24px rgba(255, 184, 0, 0.3);
+  --shadow-blue: 0 4px 12px rgba(44, 110, 203, 0.2);
 
   /* Transitions */
   --transition-fast: 0.15s ease;
@@ -152,14 +152,13 @@ html {
 }
 
 body {
-  font-family: var(--font-family);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height);
-  color: var(--text-primary);
   background-color: var(--bg-primary);
-  min-height: 100dvh;
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
   overflow-x: hidden;
+  color-scheme: light;
+  min-height: 100dvh;
 }
 
 /* ─── RTL Support ─── */
