@@ -27,12 +27,21 @@ export default function AuthPage() {
   useEffect(() => {
     // Initialize recaptcha when component mounts
     if (typeof window !== 'undefined' && !(window as any).recaptchaVerifier) {
-      (window as any).recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        'size': 'invisible',
-        'callback': () => {
-          // reCAPTCHA solved
-        }
-      });
+      if (!auth) {
+        console.error("Firebase auth is not initialized. Check environment variables.");
+        setError("تعذر الاتصال بالخادم، يرجى المحاولة لاحقاً.");
+        return;
+      }
+      try {
+        (window as any).recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+          'size': 'invisible',
+          'callback': () => {
+            // reCAPTCHA solved
+          }
+        });
+      } catch (err) {
+        console.error("Recaptcha error:", err);
+      }
     }
   }, []);
 
