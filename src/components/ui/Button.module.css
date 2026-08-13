@@ -13,10 +13,11 @@
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.01em;
 }
 
 .button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
@@ -44,33 +45,36 @@
 
 /* Variants */
 .primary {
-  background: var(--accent-gold);
+  background: var(--gradient-gold);
   color: var(--text-inverse);
+  box-shadow: var(--shadow-gold);
 }
 
 .primary:hover:not(:disabled) {
-  background: var(--accent-gold-hover);
-  box-shadow: 0 4px 16px hsla(42, 100%, 55%, 0.3);
+  box-shadow: var(--shadow-gold-lg);
+  transform: translateY(-1px);
 }
 
 .secondary {
   background: var(--bg-surface);
   color: var(--text-primary);
-  border: 1px solid hsla(220, 15%, 30%, 0.3);
+  border: 1px solid var(--bg-glass-border);
 }
 
 .secondary:hover:not(:disabled) {
   background: var(--bg-surface-hover);
+  border-color: var(--bg-glass-border-hover);
 }
 
 .outline {
   background: transparent;
   color: var(--accent-gold);
-  border: 1.5px solid var(--accent-gold);
+  border: 1.5px solid hsla(38, 95%, 58%, 0.35);
 }
 
 .outline:hover:not(:disabled) {
   background: var(--accent-gold-light);
+  border-color: var(--accent-gold);
 }
 
 .ghost {
@@ -79,7 +83,7 @@
 }
 
 .ghost:hover:not(:disabled) {
-  background: var(--bg-surface);
+  background: hsla(0, 0%, 100%, 0.06);
   color: var(--text-primary);
 }
 
@@ -89,7 +93,8 @@
 }
 
 .danger:hover:not(:disabled) {
-  box-shadow: 0 4px 16px hsla(0, 70%, 55%, 0.3);
+  box-shadow: 0 4px 16px hsla(0, 65%, 55%, 0.3);
+  transform: translateY(-1px);
 }
 
 .fullWidth {

@@ -8,12 +8,14 @@ import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Card from '@/components/ui/Card';
 import RoleGuard from '@/components/layout/RoleGuard';
+import { useToast } from '@/components/ui/ToastProvider';
 import { auth } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 export default function LinksPage() {
   const t = useTranslations();
   const router = useRouter();
+  const { showToast } = useToast();
   
   const [phone, setPhone] = useState('');
   const [selectedRestaurant, setSelectedRestaurant] = useState('alburger');
@@ -45,7 +47,7 @@ export default function LinksPage() {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(generatedLink);
-    alert(t('common.copied'));
+    showToast(t('common.copied'), 'success');
   };
 
   return (

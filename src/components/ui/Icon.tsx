@@ -119,9 +119,10 @@ interface IconProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
   color?: string;
+  style?: React.CSSProperties;
 }
 
-export default function Icon({ name, size = 'md', className = '', color }: IconProps) {
+export default function Icon({ name, size = 'md', className = '', color, style }: IconProps) {
   const icon = icons[name];
 
   if (!icon) {
@@ -139,7 +140,7 @@ export default function Icon({ name, size = 'md', className = '', color }: IconP
   return (
     <span
       className={`icon ${sizeClass} ${className}`}
-      style={color ? { color } : undefined}
+      style={{ ...(color ? { color } : {}), ...style }}
       aria-hidden="true"
     >
       {icon}

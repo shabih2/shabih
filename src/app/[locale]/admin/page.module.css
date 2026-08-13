@@ -9,19 +9,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
+  padding-top: var(--space-2);
 }
 
 .headerTitle {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
   margin-bottom: var(--space-8);
 }
 
@@ -30,9 +34,17 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: var(--space-4);
-  background: var(--bg-surface);
-  border: 1px solid hsla(45, 100%, 50%, 0.2);
+  padding: var(--space-4) var(--space-2);
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.statCard:hover {
+  border-color: var(--bg-glass-border-hover);
 }
 
 .statIcon {
@@ -41,14 +53,15 @@
 }
 
 .statValue {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-extrabold);
   color: var(--text-primary);
 }
 
 .statLabel {
   font-size: var(--font-size-xs);
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
+  margin-top: var(--space-1);
 }
 
 .sectionHeader {
@@ -61,12 +74,13 @@
 .sectionTitle {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
 }
 
 .restaurantsList {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
 .restaurantCard {
@@ -74,27 +88,37 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--space-4);
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.restaurantCard:hover {
+  border-color: var(--bg-glass-border-hover);
 }
 
 .restaurantInfo {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
 .restaurantIcon {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-md);
-  background: var(--bg-surface-hover);
+  background: var(--accent-gold-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  color: var(--accent-gold);
 }
 
 .restaurantName {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-base);
   color: var(--text-primary);
 }
@@ -109,22 +133,44 @@
 .modalOverlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(4px);
+  background: hsla(222, 30%, 6%, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: var(--z-modal);
   padding: var(--space-4);
+  animation: fadeIn 0.2s ease;
 }
 
 .modalContent {
   width: 100%;
   max-width: 400px;
-  background: var(--bg-default);
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-glass-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  animation: scaleIn 0.25s ease;
+  box-shadow: var(--shadow-xl);
+}
+
+.modalContent h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }

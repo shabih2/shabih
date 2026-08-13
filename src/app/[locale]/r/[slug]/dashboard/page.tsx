@@ -11,6 +11,7 @@ import Input from '@/components/ui/Input';
 import RoleGuard from '@/components/layout/RoleGuard';
 import dynamic from 'next/dynamic';
 import { QRCodeSVG } from 'qrcode.react';
+import { useToast } from '@/components/ui/ToastProvider';
 
 const QRScanner = dynamic(() => import('@/components/ui/QRScanner'), {
   ssr: false,
@@ -26,6 +27,7 @@ export default function RestaurantDashboard({
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
+  const { showToast } = useToast();
 
   const [activeTab, setActiveTab] = useState<'operations' | 'shabihs' | 'settings'>('operations');
 
@@ -79,7 +81,7 @@ export default function RestaurantDashboard({
               <div className={styles.scannerBox}>
                 <QRScanner 
                   onScanSuccess={(text) => {
-                    alert(`تم قراءة الباركود: ${text}`);
+                    showToast(`تم قراءة الباركود: ${text}`, 'success');
                   }} 
                 />
               </div>

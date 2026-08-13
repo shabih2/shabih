@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  width: 100%;
 }
 
 .label {
@@ -11,71 +10,62 @@
   color: var(--text-secondary);
 }
 
-.inputContainer {
+.inputGroup {
   display: flex;
   align-items: center;
   background: var(--bg-surface);
-  border: 1px solid hsla(220, 15%, 30%, 0.4);
+  border: 1.5px solid var(--bg-glass-border);
   border-radius: var(--radius-md);
-  height: 48px;
   overflow: hidden;
   transition: all var(--transition-base);
 }
 
-.inputContainer:focus-within {
+.inputGroup:focus-within {
   border-color: var(--accent-gold);
   box-shadow: 0 0 0 3px var(--accent-gold-light);
 }
 
-.hasError {
-  border-color: var(--danger);
-}
-
-.hasError:focus-within {
-  border-color: var(--danger);
-  box-shadow: 0 0 0 3px var(--danger-light);
-}
-
-.disabled {
-  opacity: 0.6;
-  background: var(--bg-surface-hover);
-  cursor: not-allowed;
-}
-
 .prefix {
-  padding: 0 var(--space-4);
-  color: var(--text-secondary);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-base);
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-3);
+  padding-right: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
   user-select: none;
+  border-left: 1px solid var(--bg-glass-border);
 }
 
-.divider {
-  width: 1px;
-  height: 60%;
-  background: hsla(220, 15%, 30%, 0.4);
+.flag {
+  font-size: var(--font-size-lg);
+  line-height: 1;
 }
 
 .input {
   flex: 1;
-  height: 100%;
-  border: none;
+  padding: var(--space-3) var(--space-4);
   background: transparent;
-  padding: 0 var(--space-4);
-  font-size: var(--font-size-base);
+  border: none;
   color: var(--text-primary);
   font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.05em;
   outline: none;
+  direction: ltr;
+  text-align: left;
 }
 
 .input::placeholder {
   color: var(--text-tertiary);
+  font-weight: var(--font-weight-regular);
 }
 
 .input:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
 }
 

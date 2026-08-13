@@ -7,14 +7,35 @@
 
 .glass {
   background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid hsla(220, 15%, 30%, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--bg-glass-border);
+}
+
+.glass:hover {
+  border-color: var(--bg-glass-border-hover);
 }
 
 .surface {
   background: var(--bg-surface);
-  border: 1px solid hsla(220, 15%, 20%, 0.5);
+  border: 1px solid var(--bg-glass-border);
+}
+
+.surface:hover {
+  border-color: var(--bg-glass-border-hover);
+}
+
+.glow {
+  background: var(--gradient-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsla(38, 95%, 58%, 0.2);
+  box-shadow: var(--shadow-gold);
+}
+
+.glow:hover {
+  border-color: hsla(38, 95%, 58%, 0.35);
+  box-shadow: var(--shadow-gold-lg);
 }
 
 .clickable {

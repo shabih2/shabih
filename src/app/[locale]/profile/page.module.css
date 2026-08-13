@@ -3,13 +3,15 @@
   display: flex;
   flex-direction: column;
   padding: var(--space-4) var(--content-padding);
+  position: relative;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
+  padding-top: var(--space-2);
 }
 
 .header h2 {
@@ -21,7 +23,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-5);
   max-width: 500px;
   margin: 0 auto;
   width: 100%;
@@ -32,19 +34,21 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
+  animation: fadeInUp 0.5s ease forwards;
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 88px;
+  height: 88px;
   border-radius: var(--radius-full);
-  background: var(--bg-surface-hover);
-  border: 2px solid hsla(220, 15%, 30%, 0.4);
+  background: var(--gradient-card);
+  border: 2px solid hsla(38, 95%, 58%, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  color: var(--accent-gold);
+  box-shadow: var(--shadow-gold);
 }
 
 .userInfo {
@@ -55,14 +59,17 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   color: var(--text-primary);
-  margin-bottom: var(--space-1);
+  margin-bottom: var(--space-2);
 }
 
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   padding: var(--space-1) var(--space-3);
   background: var(--accent-gold-light);
   color: var(--accent-gold);
+  border: 1px solid hsla(38, 95%, 58%, 0.2);
   border-radius: var(--radius-full);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
@@ -74,31 +81,38 @@
   gap: var(--space-4);
   text-align: center;
   align-items: center;
+  animation: fadeInUp 0.5s ease 0.1s forwards;
+  opacity: 0;
 }
 
 .cardHeader {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   color: var(--accent-gold);
 }
 
 .cardHeader h3 {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .cardDesc {
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .statsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  animation: fadeInUp 0.5s ease 0.2s forwards;
+  opacity: 0;
 }
 
 .statCard {
@@ -110,8 +124,9 @@
 }
 
 .statIcon {
-  color: var(--text-tertiary);
+  color: var(--accent-gold);
   margin-bottom: var(--space-2);
+  opacity: 0.7;
 }
 
 .statValue {
@@ -123,5 +138,10 @@
 
 .statLabel {
   font-size: var(--font-size-xs);
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }

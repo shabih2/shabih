@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import styles from './page.module.css';
 import Button from '@/components/ui/Button';
+import { useToast } from '@/components/ui/ToastProvider';
 
 export default function BranchRecruitPage({
   params,
@@ -14,6 +15,7 @@ export default function BranchRecruitPage({
   const { slug } = params;
   const t = useTranslations();
   const locale = useLocale();
+  const { showToast } = useToast();
 
   const [view, setView] = useState<'main' | 'auth' | 'howItWorks'>('main');
   const [session, setSession] = useState<string | null>(null);
@@ -42,7 +44,7 @@ export default function BranchRecruitPage({
       // User is logged in, copy their link
       const link = `${window.location.origin}/ar/r/${slug}/${session}`;
       navigator.clipboard.writeText(link);
-      alert('تم نسخ الرابط الخاص بك بنجاح!');
+      showToast('تم نسخ الرابط الخاص بك بنجاح!', 'success');
     } else {
       // User needs to login
       setView('auth');

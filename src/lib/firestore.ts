@@ -87,6 +87,13 @@ export const createRestaurant = async (data: Omit<Restaurant, 'createdAt'>) => {
   return restaurant;
 };
 
+export const getAllRestaurants = async (): Promise<Restaurant[]> => {
+  if (!db) return [];
+  const collRef = collection(db, 'restaurants');
+  const snap = await getDocs(collRef);
+  return snap.docs.map(doc => doc.data() as Restaurant);
+};
+
 // --- Hospitalities ---
 export const createHospitality = async (data: Omit<Hospitality, 'id' | 'createdAt' | 'status'>) => {
   if (!db) return null;

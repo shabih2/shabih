@@ -3,25 +3,41 @@
   display: flex;
   flex-direction: column;
   padding: var(--space-6) var(--content-padding);
+  position: relative;
+}
+
+/* Ambient glow */
+.main::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, hsla(38, 95%, 58%, 0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .backButton {
   align-self: flex-start;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-surface);
-  border: 1px solid hsla(220, 15%, 30%, 0.2);
+  border: 1px solid var(--bg-glass-border);
   color: var(--text-primary);
   cursor: pointer;
   transition: all var(--transition-base);
+  z-index: 1;
 }
 
 .backButton:hover {
   background: var(--bg-surface-hover);
+  border-color: var(--bg-glass-border-hover);
 }
 
 [dir="rtl"] .backButton svg {
@@ -39,6 +55,8 @@
   width: 100%;
   padding-bottom: 10vh;
   animation: slideUp 0.5s ease forwards;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes slideUp {
@@ -55,15 +73,17 @@
 }
 
 .iconWrapper {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-lg);
-  background: var(--accent-gold-light);
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-card);
+  border: 1px solid hsla(38, 95%, 58%, 0.2);
   color: var(--accent-gold);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-2);
+  box-shadow: var(--shadow-gold);
 }
 
 .header h1 {
@@ -74,7 +94,7 @@
 
 .subtitle {
   font-size: var(--font-size-sm);
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
 }
 
 .form {
@@ -82,9 +102,9 @@
   flex-direction: column;
   gap: var(--space-4);
   background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: var(--space-6);
   border-radius: var(--radius-xl);
-  border: 1px solid hsla(220, 15%, 30%, 0.2);
+  border: 1px solid var(--bg-glass-border);
 }

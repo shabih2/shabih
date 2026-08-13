@@ -2,53 +2,56 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  width: 100%;
+  direction: ltr;
 }
 
-.container {
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  direction: rtl;
+}
+
+.inputRow {
   display: flex;
-  justify-content: space-between;
   gap: var(--space-3);
-  width: 100%;
+  justify-content: center;
 }
 
-.input {
-  width: 100%;
-  aspect-ratio: 1;
+.otpInput {
+  width: 56px;
+  height: 56px;
   text-align: center;
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  font-family: var(--font-family);
-  color: var(--text-primary);
   background: var(--bg-surface);
-  border: 1.5px solid hsla(220, 15%, 25%, 0.5);
+  border: 1.5px solid var(--bg-glass-border);
   border-radius: var(--radius-md);
-  transition: all var(--transition-base);
+  color: var(--text-primary);
+  font-family: var(--font-family);
   outline: none;
+  transition: all var(--transition-base);
+  caret-color: var(--accent-gold);
 }
 
-.input:focus {
+.otpInput:focus {
   border-color: var(--accent-gold);
   box-shadow: 0 0 0 3px var(--accent-gold-light);
-  transform: translateY(-2px);
 }
 
-.input:disabled {
+.otpInput.filled {
+  border-color: var(--accent-gold);
+  background: var(--accent-gold-light);
+}
+
+.otpInput:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-.hasError {
-  border-color: var(--danger);
-}
-
-.hasError:focus {
-  border-color: var(--danger);
-  box-shadow: 0 0 0 3px var(--danger-light);
 }
 
 .error {
   font-size: var(--font-size-xs);
   color: var(--danger);
   text-align: center;
+  direction: rtl;
 }
