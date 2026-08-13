@@ -10,6 +10,7 @@ import Card from '@/components/ui/Card';
 import RoleGuard from '@/components/layout/RoleGuard';
 import { auth } from '@/lib/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChangedDev } from '@/lib/firebase';
 import { getUserProfile, updateUserRole } from '@/lib/firestore';
 
 export default function ProfilePage() {
@@ -24,7 +25,7 @@ export default function ProfilePage() {
   const [uid, setUid] = useState('');
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChangedDev(auth, async (user) => {
       if (user) {
         setPhone(user.phoneNumber || '');
         setUid(user.uid);

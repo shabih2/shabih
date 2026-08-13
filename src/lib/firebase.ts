@@ -25,4 +25,19 @@ if (typeof window !== 'undefined' || process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
 export const auth = app ? getAuth(app) : null as any;
 export const db = app ? getFirestore(app) : null as any;
 export const storage = app ? getStorage(app) : null as any;
+
+import { onAuthStateChanged, User } from 'firebase/auth';
+
+export const onAuthStateChangedDev = (authInstance: any, callback: (user: User | null) => void) => {
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development' && localStorage.getItem('shabih_dev_user')) {
+    const dummyUser = {
+      uid: 'dev-user-123',
+      phoneNumber: localStorage.getItem('shabih_dev_phone') || '+966555555555',
+    } as User;
+    callback(dummyUser);
+    return () => {};
+  }
+  return onAuthStateChanged(authInstance, callback);
+};
+
 export default app;

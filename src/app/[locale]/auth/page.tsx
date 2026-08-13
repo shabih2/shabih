@@ -58,6 +58,15 @@ export default function AuthPage() {
     const normalizedPhone = normalizeNumber(phone);
     const formattedPhone = `+966${normalizedPhone}`;
 
+    // DEV MODE BYPASS
+    if (process.env.NODE_ENV === 'development') {
+      setTimeout(() => {
+        setLoading(false);
+        setStep(2);
+      }, 1000);
+      return;
+    }
+
     try {
       const appVerifier = (window as any).recaptchaVerifier;
       const confirmation = await signInWithPhoneNumber(auth, formattedPhone, appVerifier);
@@ -74,6 +83,27 @@ export default function AuthPage() {
   const handleVerify = async () => {
     if (otp.length < 4) return;
     
+    // DEV MODE BYPASS
+    if (process.env.NODE_ENV === 'development' && otp === '1234') {
+      const normalizeNumber = (str: string) => str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
+      const formattedPhone = `+966${normalizeNumber(phone)}`;
+      localStorage.setItem('shabih_dev_user', 'true');
+      localStorage.setItem('shabih_dev_phone', formattedPhone);
+      
+      try {
+        const dummyUid = 'dev-user-123';
+        const userProfile = await getUserProfile(dummyUid);
+        if (!userProfile) {
+          await createUserProfile(dummyUid, formattedPhone);
+        }
+        window.location.href = `/${locale}/profile`;
+      } catch (err) {
+        console.error(err);
+        setError('تعذر تسجيل الدخول في وضع التطوير');
+      }
+      return;
+    }
+
     if (!confirmationResult) return;
 
     try {

@@ -11,6 +11,7 @@ import RoleGuard from '@/components/layout/RoleGuard';
 import { useToast } from '@/components/ui/ToastProvider';
 import { auth } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChangedDev } from '@/lib/firebase';
 
 export default function LinksPage() {
   const t = useTranslations();
@@ -32,7 +33,7 @@ export default function LinksPage() {
   ];
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChangedDev(auth, (user) => {
       if (user && user.phoneNumber) {
         setPhone(user.phoneNumber.replace('+', ''));
       }

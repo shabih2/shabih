@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import Icon from '@/components/ui/Icon';
 import { auth } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChangedDev } from '@/lib/firebase';
 import { getUserProfile } from '@/lib/firestore';
 
 interface RoleGuardProps {
@@ -26,7 +27,7 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
     const isPublicRoute = !pathname || pathname === '/' || pathname === '/ar' || pathname === '/en';
 
     const restaurantSession = localStorage.getItem('shabih_restaurant_session');
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChangedDev(auth, async (user) => {
       
       // 1. If we are on a restaurant route
       if (isRestaurantRoute) {
