@@ -8,6 +8,8 @@ import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Card from '@/components/ui/Card';
 import RoleGuard from '@/components/layout/RoleGuard';
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export default function LinksPage() {
   const t = useTranslations();
@@ -28,10 +30,12 @@ export default function LinksPage() {
   ];
 
   useEffect(() => {
-    const session = localStorage.getItem('shabih_session');
-    if (session) {
-      setPhone(session.replace('+', ''));
-    }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user && user.phoneNumber) {
+        setPhone(user.phoneNumber.replace('+', ''));
+      }
+    });
+    return () => unsubscribe();
   }, []);
 
   const handleCreateLink = () => {

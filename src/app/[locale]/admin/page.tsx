@@ -42,7 +42,7 @@ export default function AdminDashboard() {
   return (
     <main className={styles.main}>
       <header className={styles.header}>
-        <div className={styles.headerTitle}>سفير - الإدارة العليا</div>
+        <div className={styles.headerTitle}>لوحة إدارة الشركة</div>
         <Button variant="ghost" icon="logout" onClick={() => window.location.href = `/${locale}`} />
       </header>
 

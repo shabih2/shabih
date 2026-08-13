@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import styles from './page.module.css';
@@ -8,8 +8,9 @@ import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import PhoneInput from '@/components/ui/PhoneInput';
 import OTPInput from '@/components/ui/OTPInput';
-import { auth, db } from '@/lib/firebase';
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { auth } from '@/lib/firebase';
+import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+import { getUserProfile, createUserProfile } from '@/lib/firestore';
 
 export default function AuthPage() {
   const t = useTranslations();
@@ -21,6 +22,19 @@ export default function AuthPage() {
   const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
+
+  useEffect(() => {
+    // Initialize recaptcha when component mounts
+    if (typeof window !== 'undefined' && !(window as any).recaptchaVerifier) {
+      (window as any).recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        'size': 'invisible',
+        'callback': () => {
+          // reCAPTCHA solved
+        }
+      });
+    }
+  }, []);
 
   const handleSendOTP = async () => {
     if (phone.length < 9) {
@@ -31,60 +45,42 @@ export default function AuthPage() {
     setError('');
     setLoading(true);
     
-    // Simulate sending OTP (Lean Startup mode)
-    setTimeout(() => {
+    const normalizeNumber = (str: string) => str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
+    const normalizedPhone = normalizeNumber(phone);
+    const formattedPhone = `+966${normalizedPhone}`;
+
+    try {
+      const appVerifier = (window as any).recaptchaVerifier;
+      const confirmation = await signInWithPhoneNumber(auth, formattedPhone, appVerifier);
+      setConfirmationResult(confirmation);
       setLoading(false);
       setStep(2);
-    }, 1000);
+    } catch (err: any) {
+      console.error(err);
+      setError('فشل إرسال الرمز، يرجى المحاولة مرة أخرى أو التأكد من الرقم');
+      setLoading(false);
+    }
   };
 
   const handleVerify = async () => {
     if (otp.length < 4) return;
     
-    // Simulate verification - ONLY accept 1234
-    if (otp !== '1234') {
-      setError('الرمز غير صحيح، أدخل 1234 للمحاكاة');
-      return;
-    }
-
-    setError('');
-    setLoading(true);
+    if (!confirmationResult) return;
 
     try {
-      const normalizeNumber = (str: string) => str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
-      const normalizedPhone = normalizeNumber(phone);
-      const formattedPhone = `+966${normalizedPhone}`;
+      const result = await confirmationResult.confirm(otp);
+      const user = result.user;
       
-      // In a real app, we would use signInWithCredential here
-      // But since we are simulating OTP, we will just interact with Firestore
-      // WARNING: In a real app, you CANNOT write to Firestore securely without a Firebase Auth token.
-      // Since this is MVP mock, we'll assume Firebase Security Rules allow it or we just simulate UI state.
-      // But wait! Without a real Firebase Auth, how will they stay logged in?
-      // Since we enabled Phone Auth in console, the CORRECT way is to use RecaptchaVerifier and signInWithPhoneNumber.
-      // But user said: "اجعل sms محاكاة حاليا"
-      // So we will just write the phone number to localStorage to simulate session for now!
-      
-      const userRef = doc(db, 'users', formattedPhone);
-      const userSnap = await getDoc(userRef);
-
-      if (!userSnap.exists()) {
-        // Create new user record
-        await setDoc(userRef, {
-          phone: formattedPhone,
-          isAmbassador: false,
-          createdAt: serverTimestamp(),
-        });
+      // Get or create user in Firestore
+      const userProfile = await getUserProfile(user.uid);
+      if (!userProfile) {
+        await createUserProfile(user.uid, user.phoneNumber || '');
       }
-      
-      // Simulate Session
-      localStorage.setItem('shabih_session', formattedPhone);
-      
-      // Redirect to profile or dashboard
+
       window.location.href = `/${locale}/profile`;
-      
     } catch (err) {
       console.error(err);
-      setError('حدث خطأ أثناء الاتصال بقاعدة البيانات');
+      setError('الرمز غير صحيح');
       setLoading(false);
     }
   };
@@ -159,6 +155,7 @@ export default function AuthPage() {
           )}
         </div>
       </div>
+      <div id="recaptcha-container"></div>
     </main>
   );
 }

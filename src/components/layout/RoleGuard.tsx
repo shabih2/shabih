@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter, usePathname } from '@/i18n/navigation';
+import { usePathname } from '@/i18n/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import Icon from '@/components/ui/Icon';
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 interface RoleGuardProps {
   children: React.ReactNode;
@@ -11,7 +13,6 @@ interface RoleGuardProps {
 }
 
 export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
-  const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations('common');
   const locale = useLocale();
@@ -19,67 +20,54 @@ export default function RoleGuard({ children, allowedRoles }: RoleGuardProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulated auth check using localStorage (MVP Lean mode)
-    const session = localStorage.getItem('shabih_session');
     const isRestaurantRoute = pathname ? pathname.includes('/r/') : false;
-    
-    if (!session) {
-      // Not logged in
+    const isAuthRoute = pathname ? pathname.endsWith('/auth') : false;
+    const isPublicRoute = !pathname || pathname === '/' || pathname === '/ar' || pathname === '/en';
+
+    const restaurantSession = localStorage.getItem('shabih_restaurant_session');
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      
+      // 1. If we are on a restaurant route
       if (isRestaurantRoute) {
-        // Redirect to specific restaurant login
-        const slug = pathname ? pathname.split('/r/')[1]?.split('/')[0] : null;
-        if (slug && (!pathname || !pathname.endsWith('/auth'))) {
-          window.location.href = `/${locale}/r/${slug}/auth`;
+        if (!restaurantSession) {
+          // Not logged in as restaurant
+          const slug = pathname ? pathname.split('/r/')[1]?.split('/')[0] : null;
+          if (slug && !isAuthRoute) {
+            window.location.href = `/${locale}/r/${slug}/auth`;
+            return;
+          }
         } else {
-          setLoading(false);
-          setIsAuthorized(true); // Allow them to see the auth page
+          // Logged in as restaurant
+          if (isAuthRoute) {
+            window.location.href = `/${locale}/r/${restaurantSession}/dashboard`;
+            return;
+          }
         }
-      } else {
-        if (!pathname || (!pathname.endsWith('/auth') && pathname !== '/' && pathname !== '/ar' && pathname !== '/en')) {
+        
+        setIsAuthorized(true);
+        setLoading(false);
+        return;
+      }
+
+      // 2. If we are on a user route (customer/ambassador/admin)
+      if (!user) {
+        if (!isAuthRoute && !isPublicRoute) {
           window.location.href = `/${locale}/auth`;
-        } else {
-          setLoading(false);
-          setIsAuthorized(true);
+          return;
+        }
+      } else {
+        if (isAuthRoute || isPublicRoute) {
+          window.location.href = `/${locale}/profile`;
+          return;
         }
       }
-      return;
-    }
 
-    // Determine current role based on session
-    // In our MVP simulation:
-    // If session is just digits or starts with +, it's a customer/ambassador.
-    // If session is an alphanumeric slug, it's a restaurant.
-    const normalizeNumber = (str: string) => str.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d).toString());
-    const normalizedSession = normalizeNumber(session);
-    const isRestaurantSession = !normalizedSession.startsWith('+') && isNaN(Number(normalizedSession));
+      setIsAuthorized(true);
+      setLoading(false);
+    });
 
-    if (isRestaurantRoute && !isRestaurantSession) {
-      // User trying to access restaurant dashboard
-      const slug = pathname ? pathname.split('/r/')[1]?.split('/')[0] : null;
-      if (slug && (!pathname || !pathname.endsWith('/auth'))) {
-        window.location.href = `/${locale}/r/${slug}/auth`;
-      } else {
-        window.location.href = `/${locale}/profile`;
-      }
-      return;
-    }
-
-    if (!isRestaurantRoute && isRestaurantSession) {
-      // Restaurant trying to access user app
-      window.location.href = `/${locale}/r/${session}/dashboard`;
-      return;
-    }
-
-    // Role check logic (simplified for MVP)
-    if (allowedRoles) {
-      // e.g. check if they are activated ambassador if required
-      // For now, allow all authenticated
-    }
-
-    setIsAuthorized(true);
-    setLoading(false);
-
-  }, [pathname, router, allowedRoles]);
+    return () => unsubscribe();
+  }, [pathname, locale]);
 
   if (loading) {
     return (

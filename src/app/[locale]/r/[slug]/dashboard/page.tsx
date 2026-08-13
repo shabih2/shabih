@@ -30,7 +30,7 @@ export default function RestaurantDashboard({
   const [activeTab, setActiveTab] = useState<'operations' | 'shabihs' | 'settings'>('operations');
 
   const handleLogout = () => {
-    localStorage.removeItem('shabih_session');
+    localStorage.removeItem('shabih_restaurant_session');
     window.location.href = `/${locale}/r/${slug}/auth`;
   };
 

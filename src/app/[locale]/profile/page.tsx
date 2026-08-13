@@ -8,8 +8,9 @@ import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Card from '@/components/ui/Card';
 import RoleGuard from '@/components/layout/RoleGuard';
-import { db } from '@/lib/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { getUserProfile, updateUserRole } from '@/lib/firestore';
 
 export default function ProfilePage() {
   const t = useTranslations();
@@ -20,38 +21,33 @@ export default function ProfilePage() {
   const [isAmbassador, setIsAmbassador] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const [uid, setUid] = useState('');
+
   useEffect(() => {
-    const session = localStorage.getItem('shabih_session');
-    if (!session) return;
-    
-    setPhone(session);
-    
-    // Fetch user profile from Firestore
-    const fetchProfile = async () => {
-      try {
-        const userRef = doc(db, 'users', session);
-        const userSnap = await getDoc(userRef);
-        
-        if (userSnap.exists()) {
-          setIsAmbassador(userSnap.data().isAmbassador || false);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setPhone(user.phoneNumber || '');
+        setUid(user.uid);
+        try {
+          const profile = await getUserProfile(user.uid);
+          if (profile) {
+            setIsAmbassador(profile.role === 'ambassador');
+          }
+        } catch (err) {
+          console.error('Error fetching profile', err);
         }
-      } catch (err) {
-        console.error('Error fetching profile', err);
-      } finally {
-        setLoading(false);
       }
-    };
-    
-    fetchProfile();
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const handleActivateAmbassador = async () => {
+    if (!uid) return;
     try {
       setLoading(true);
-      const userRef = doc(db, 'users', phone);
-      await updateDoc(userRef, {
-        isAmbassador: true,
-      });
+      await updateUserRole(uid, 'ambassador');
       setIsAmbassador(true);
     } catch (err) {
       console.error(err);
@@ -60,8 +56,8 @@ export default function ProfilePage() {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('shabih_session');
+  const handleLogout = async () => {
+    await signOut(auth);
     window.location.href = `/${locale}`;
   };
 
